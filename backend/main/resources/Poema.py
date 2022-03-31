@@ -3,8 +3,8 @@ from flask import request
 
 #Diccionario de prueba
 POEMAS = {
-    1: {'titulo': 'Pedro', 'descripcion': 'Marco'},
-    2: {'firstname': 'María', 'lastname': 'Sosa'},
+    1: {'titulo': 'El amor a primera vista', 'autor': 'Marcos','descripcion':'poema de amor'},
+    2: {'titulo': 'Mil veranos', 'autor': 'Agustina','descripcion':'poema de verano'},
 }
 
 

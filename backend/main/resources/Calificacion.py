@@ -4,7 +4,7 @@ from flask import request
 #Diccionario de prueba
 CALIFICACIONES = {
     1: {'valoracion': '4', 'feedback': 'excelente poema'},
-    2: {'valoracion': '8', 'feedback': 'falta inspiracion'},
+    2: {'valoracion': '5', 'feedback': 'falta inspiracion'},
 }
 
 
