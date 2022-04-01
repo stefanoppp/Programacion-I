@@ -3,8 +3,8 @@ from flask import request
 
 #Diccionario de prueba
 USUARIOS = {
-    1: {'nombre': 'Pedro', 'apellido': 'Fernandez','mail':'pedro@hotmail.com','nombre_usuario':'pedrito','contrasena':'pedro1234'},
-    2: {'nombre': 'Juan', 'apellido': 'Rodriguez','mail':'juan@hotmail.com','nombre_usuario':'juancito','contrasena':'juancito1234'},
+    1: {'nombre': 'Pedro','mail':'pedro@hotmail.com','contrasena':'pedro1234'},
+    2: {'nombre': 'Juan','mail':'juan@hotmail.com','contrasena':'juancito1234'},
 }
 
 #Recurso Usuario
