@@ -1,49 +1,48 @@
 from flask_restful import Resource
-from flask import request
+from flask import request,jsonify
+from .. import db
+from main.models import UsuarioModel
 
-#Diccionario de prueba
-USUARIOS = {
-    1: {'nombre': 'Pedro','mail':'pedro@hotmail.com','contrasena':'pedro1234'},
-    2: {'nombre': 'Juan','mail':'juan@hotmail.com','contrasena':'juancito1234'},
-}
 
 #Recurso Usuario
 class Usuario(Resource):
-    #Obtener recurso
+   
     def get(self, id):
-        #Verificar que exista un Usuario con ese Id en diccionario
-        if int(id) in USUARIOS:
-            #Devolver usuario correspondiente
-            return USUARIOS[int(id)]
-        #Devolver error 404 en caso que no exista
-        return 'no existe el usuario', 404
-    #Eliminar recurso
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        return usuario.to_json()
+    
     def delete(self, id):
-        #Verificar que exista un Usuario con ese Id en diccionario
-        if int(id) in USUARIOS:
-            #Eliminar usuario del diccionario
-            del USUARIOS[int(id)]
-            return '', 204
-        return 'no se pudo eliminar el usuario, ingrese id valido', 404
+        
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        db.session.delete(usuario)
+        db.session.commit()
+        return '', 204
+
+
     #Modificar recurso
     def put(self, id):
-        if int(id) in USUARIOS:
-            usuario = USUARIOS[int(id)]
-            #Obtengo los datos de la solicitud
-            data = request.get_json()
-            usuario.update(data)
-            return usuario, 201
-        return 'no se pudo actualizar el usuario, ingrese id valido', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        data = request.get_json().items()
+        for key, value in data:
+            setattr(usuario, key, value)
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json() , 201
+
 
 #Recurso Usuarios
 class Usuarios(Resource):
     #Obtener lista de recursos
     def get(self):
-        return USUARIOS
+        usuarios = db.session.query(UsuarioModel).all()
+        return jsonify([usuario.to_json_short() for usuario in usuarios])
+
+    
     #Insertar recurso
     def post(self):
-        #Obtener datos de la solicitud
-        user = request.get_json()
-        id = int(max(USUARIOS.keys())) + 1
-        USUARIOS[id] = user
-        return USUARIOS[id], 201
+        usuario = UsuarioModel.from_json(request.get_json()) #traemos los valores del json
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json(), 201
+
+       
