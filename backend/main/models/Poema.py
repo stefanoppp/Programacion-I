@@ -1,9 +1,12 @@
+from collections import UserList
 from .. import db
 
 class Poema(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     contenido = db.Column(db.String(100), nullable=False)
+    usuario_id = db.Column(db.integer,db.ForeignKey('usuario.id'),nullable=False)
+    usuario = db.relationship('usuario', back_populates = "Poemas", uselist=False, single_parent=True)
 
     
     def __repr__(self):
@@ -15,6 +18,7 @@ class Poema(db.Model):
             'id': self.id,
             'titulo': str(self.titulo),
             'contenido': str(self.contenido)
+            
         }
         return poema_json
 

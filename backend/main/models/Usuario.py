@@ -1,3 +1,4 @@
+from email.policy import default
 from .. import db
 
 class Usuario(db.Model):
@@ -5,16 +6,21 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     contrasena = db.Column(db.String(100), nullable=False)
+    admin = db.Column(db.Boolean,default=False, nullable=False)
+    poemas = db.relationship('Poema', back_populates = 'usuario', cascade = 'all, delete-orphan')
     
     def __repr__(self):
         return '<Usuario: %r %r >' % (self.nombre, self.email)
     
     #Convertir objeto en JSON
     def to_json(self):
+        poemas = [poema.to_json_short() for poema in self.poemas]
         usuario_json = {
             'id': self.id,
             'nombre': str(self.nombre),
-            'email': str(self.email)
+            'email': str(self.email),
+            'admin': str(self.admin),
+            'poemas':poemas
         }
         return usuario_json
 
