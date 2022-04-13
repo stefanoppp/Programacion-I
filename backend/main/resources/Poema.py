@@ -9,14 +9,14 @@ class Poema(Resource):
    
     def get(self, id):
         poema = db.session.query(PoemaModel).get_or_404(id)
-        return poema.to_json()
+        return poema.to_json_complete()
     
     def delete(self, id):
         
         poema = db.session.query(PoemaModel).get_or_404(id)
         db.session.delete(poema)
         db.session.commit()
-        return '', 204
+        return 'eliminacion exitosa', 204
 
 
     #Modificar recurso
@@ -35,14 +35,17 @@ class Poemas(Resource):
     #Obtener lista de recursos
     def get(self):
         poemas = db.session.query(PoemaModel).all()
-        return jsonify([poema.to_json_short() for poema in poemas])
+        return jsonify({ 'poemas':[poema.to_json() for poema in poemas] })
 
     
     #Insertar recurso
     def post(self):
-        poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
-        db.session.add(poema)
-        db.session.commit()
-        return poema.to_json(), 201
+        try:
+            poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
+            db.session.add(poema)
+            db.session.commit()
+            return poema.to_json(), 201
+        except:
+            return 'usuario inexistente',400
 
        

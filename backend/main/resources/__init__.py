@@ -1,6 +1,5 @@
 #Cambiar el nombre en la importación para clarificar y evitar conflictos
 
-
 ####
 from .Usuario import Usuario as UsuarioResource
 from .Usuario import Usuarios as UsuariosResource

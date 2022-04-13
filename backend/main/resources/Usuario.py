@@ -9,14 +9,14 @@ class Usuario(Resource):
    
     def get(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
-        return usuario.to_json()
+        return usuario.to_json_complete()
     
     def delete(self, id):
         
         usuario = db.session.query(UsuarioModel).get_or_404(id)
         db.session.delete(usuario)
         db.session.commit()
-        return '', 204
+        return 'eliminacion exitosa', 204
 
 
     #Modificar recurso
@@ -35,7 +35,7 @@ class Usuarios(Resource):
     #Obtener lista de recursos
     def get(self):
         usuarios = db.session.query(UsuarioModel).all()
-        return jsonify([usuario.to_json_short() for usuario in usuarios])
+        return jsonify({ 'usuarios': [usuario.to_json() for usuario in usuarios] })
 
     
     #Insertar recurso

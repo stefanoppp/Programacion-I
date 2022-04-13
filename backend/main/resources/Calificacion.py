@@ -9,7 +9,7 @@ class Calificacion(Resource):
    
     def get(self, id):
         calificacion = db.session.query(CalificacionModel).get_or_404(id)
-        return calificacion.to_json()
+        return calificacion.to_json_complete()
     
     def delete(self, id):
         
@@ -35,12 +35,15 @@ class Calificaciones(Resource):
     #Obtener lista de recursos
     def get(self):
         calificaciones = db.session.query(CalificacionModel).all()
-        return jsonify([calificacion.to_json_short() for calificacion in calificaciones])
+        return jsonify({ 'calificaciones':[calificacion.to_json() for calificacion in calificaciones] })
 
     
     #Insertar recurso
     def post(self):
-        calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
-        db.session.add(calificacion)
-        db.session.commit()
-        return calificacion.to_json(), 201
+        try:
+            calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
+            db.session.add(calificacion)
+            db.session.commit()
+            return calificacion.to_json(), 201
+        except:
+            return 'ingrese datos correctos',400
