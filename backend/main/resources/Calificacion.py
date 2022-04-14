@@ -44,6 +44,6 @@ class Calificaciones(Resource):
             calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
             db.session.add(calificacion)
             db.session.commit()
-            return calificacion.to_json(), 201
         except:
             return 'ingrese datos correctos',400
+        return calificacion.to_json(), 201

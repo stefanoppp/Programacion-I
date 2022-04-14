@@ -28,7 +28,7 @@ class Poema(db.Model):
         }
         return poema_json
 
-    def to_json(self):        ##preguntar
+    def to_json(self):        
         poema_json = {
             'id': self.id,
             'titulo': str(self.titulo),
@@ -40,12 +40,11 @@ class Poema(db.Model):
     @staticmethod
     #Convertir JSON a objeto
     def from_json(poema_json):
-        #db.session.query(UsuarioModel).get_or_404(usuarioId)
         id = poema_json.get('id')
         titulo = poema_json.get('titulo')
         contenido = poema_json.get('contenido')
         usuarioId = poema_json.get('usuarioId')
-        
+        db.session.query(UsuarioModel).get_or_404(usuarioId)
         return Poema(id=id,
                     titulo=titulo,
                     contenido=contenido,

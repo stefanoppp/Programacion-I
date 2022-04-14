@@ -44,8 +44,7 @@ class Poemas(Resource):
             poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
             db.session.add(poema)
             db.session.commit()
-            return poema.to_json(), 201
         except:
             return 'usuario inexistente',400
-
+        return poema.to_json(), 201
        

@@ -40,6 +40,8 @@ class Calificacion(db.Model):
         comentario = calificacion_json.get('comentario')
         usuarioId = calificacion_json.get('usuarioId')
         poemaId = calificacion_json.get('poemaId')
+        db.session.query(UsuarioModel).get_or_404(usuarioId)
+        db.session.query(PoemaModel).get_or_404(poemaId)
         
         
         return Calificacion(id = id,
