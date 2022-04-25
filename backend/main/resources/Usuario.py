@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request,jsonify
 from .. import db
-from main.models import UsuarioModel
+from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func
 
 
@@ -33,7 +33,7 @@ class Usuario(Resource):
 
 #Recurso Usuarios
 class Usuarios(Resource):
-    #Obtener lista de recursos
+    #Obtener lista de recursos                #primero los filtros y luego ordenamiento
     def get(self):
         page=1
         per_page=10
@@ -47,7 +47,15 @@ class Usuarios(Resource):
                     per_page = int(value)
                 if key == "nombre":
                     usuarios = usuarios.filter(UsuarioModel.nombre.like("%"+value+"%")) #cualquier caracter antes y cualquier caracter despues del value, aunque sepa el nombre parcialmente nos va a traer lo que busquemos
-                #if key == "poemas":
+                if key == "poemas_cant":
+                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).having(func.count(PoemaModel.id) > value)
+                if key == "calificaciones_cant":
+                     usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.id).having(func.count(CalificacionModel.id) > value)
+                if key == "order_by":
+                    if value == "nombre[desc]": #ordena los nombres de la z-a
+                        usuarios = usuarios.order_by(UsuarioModel.nombre.desc())
+                    if value == "nombre": #ordena nombres de la a-z
+                        usuarios = usuarios.order_by(UsuarioModel.nombre)
         usuarios = usuarios.paginate(page,per_page,True,10)
         return jsonify({ 
         'usuarios': [usuario.to_json() for usuario in usuarios.items],

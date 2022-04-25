@@ -21,7 +21,9 @@ class Usuario(db.Model):
             'email': str(self.email),
             'admin': str(self.admin),
             'poemas': poemas,
-            'calificaciones':calificaciones
+            'calificaciones':calificaciones,
+            'poemas_cant':len(poemas),
+            'calificaciones_cant':len(calificaciones)
         }
         return usuario_json
 
@@ -30,6 +32,8 @@ class Usuario(db.Model):
             'id': self.id,
             'nombre': str(self.nombre),
             'email': str(self.email),
+            'poemas_cant':len(self.poemas),
+            'calificaciones_cant':len(self.calificaciones)
         }
         return usuario_json
     
