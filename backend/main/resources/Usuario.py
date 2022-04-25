@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import request,jsonify
 from .. import db
 from main.models import UsuarioModel
+from sqlalchemy import func
 
 
 #Recurso Usuario
@@ -34,8 +35,26 @@ class Usuario(Resource):
 class Usuarios(Resource):
     #Obtener lista de recursos
     def get(self):
-        usuarios = db.session.query(UsuarioModel).all()
-        return jsonify({ 'usuarios': [usuario.to_json() for usuario in usuarios] })
+        page=1
+        per_page=10
+        usuarios = db.session.query(UsuarioModel)
+        if request.get_json():
+            filters=request.get_json().items()
+            for key,value in filters:
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+                if key == "nombre":
+                    usuarios = usuarios.filter(UsuarioModel.nombre.like("%"+value+"%")) #cualquier caracter antes y cualquier caracter despues del value, aunque sepa el nombre parcialmente nos va a traer lo que busquemos
+                #if key == "poemas":
+        usuarios = usuarios.paginate(page,per_page,True,10)
+        return jsonify({ 
+        'usuarios': [usuario.to_json() for usuario in usuarios.items],
+        'total':usuarios.total,
+        'paginas':usuarios.pages,
+        'pagina':page
+        })
 
     
     #Insertar recurso
