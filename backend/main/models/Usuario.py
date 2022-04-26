@@ -22,8 +22,7 @@ class Usuario(db.Model):
             'admin': str(self.admin),
             'poemas': poemas,
             'calificaciones':calificaciones,
-            'poemas_cant':len(poemas),
-            'calificaciones_cant':len(calificaciones)
+            'poemas_cant':len(poemas)
         }
         return usuario_json
 

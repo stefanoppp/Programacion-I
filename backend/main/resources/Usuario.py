@@ -48,9 +48,9 @@ class Usuarios(Resource):
                 if key == "nombre":
                     usuarios = usuarios.filter(UsuarioModel.nombre.like("%"+value+"%")) #cualquier caracter antes y cualquier caracter despues del value, aunque sepa el nombre parcialmente nos va a traer lo que busquemos
                 if key == "poemas_cant":
-                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).having(func.count(PoemaModel.id) > value)
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).having(func.count(PoemaModel.id) > value)
                 if key == "calificaciones_cant":
-                     usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.id).having(func.count(CalificacionModel.id) > value)
+                    usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.id).having(func.count(CalificacionModel.id) > value)
                 if key == "order_by":
                     if value == "nombre[desc]": #ordena los nombres de la z-a
                         usuarios = usuarios.order_by(UsuarioModel.nombre.desc())

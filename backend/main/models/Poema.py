@@ -34,6 +34,7 @@ class Poema(db.Model):
             'titulo': str(self.titulo),
             'contenido':str(self.contenido),
             'fecha':str(self.fecha.strftime("%d-%m-%Y/%H:%M:%S")),
+            'calificaciones_cant':len(self.calificaciones)
         }
         return poema_json
     
