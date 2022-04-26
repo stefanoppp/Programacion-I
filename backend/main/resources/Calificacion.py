@@ -34,8 +34,31 @@ class Calificacion(Resource):
 class Calificaciones(Resource):
     #Obtener lista de recursos
     def get(self):
-        calificaciones = db.session.query(CalificacionModel).all()
-        return jsonify({ 'calificaciones':[calificacion.to_json() for calificacion in calificaciones] })
+        page=1
+        per_page=10
+        calificaciones = db.session.query(CalificacionModel)
+        if request.get_json():
+            filters=request.get_json().items()
+            for key,value in filters:
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+                if key == "valoracion":
+                    calificaciones = calificaciones.filter(CalificacionModel.valoracion == value)
+                if key == "order_by":
+                    if value == "valoracion[desc]":
+                        calificaciones = calificaciones.order_by(CalificacionModel.valoracion.desc())
+                    if value == "valoracion":
+                        calificaciones = calificaciones.order_by(CalificacionModel.valoracion)
+
+        calificaciones = calificaciones.paginate(page,per_page,True,10)
+        return jsonify({ 
+            'calificaciones':[calificacion.to_json() for calificacion in calificaciones.items],
+            'total':calificaciones.total,
+            'paginas':calificaciones.pages,
+            'pagina':page
+            })
 
     
     #Insertar recurso

@@ -20,9 +20,9 @@ class Usuario(db.Model):
             'nombre': str(self.nombre),
             'email': str(self.email),
             'admin': str(self.admin),
+            'poemas_cant':len(poemas),
             'poemas': poemas,
             'calificaciones':calificaciones,
-            'poemas_cant':len(poemas)
         }
         return usuario_json
 

@@ -50,13 +50,15 @@ class Poemas(Resource):
                 if key == "titulo":
                    poemas =poemas.filter(PoemaModel.titulo.like("%"+value+"%")) #cualquier caracter antes y cualquier caracter despues del value, aunque sepa el nombre parcialmente nos va a traer lo que busquemos
                 if key == "nombre":
-                   poemas =usuarios.filter(UsuarioModel.nombre.like("%"+value+"%"))
+                   poemas = usuarios.filter(UsuarioModel.nombre.like("%"+value+"%"))
                 if key == "poemas_cant":
-                   poemas =poemas.outerjoin(PoemaModel.usuario).group_by(PoemaModel.id).having(func.count(PoemaModel.id) > value)
+                   poemas = poemas.outerjoin(PoemaModel.usuario).group_by(PoemaModel.id).having(func.count(PoemaModel.id) > value)
                 if key == "calificaciones_cant":
                     poemas =poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.id).having(func.count(CalificacionModel.id) > value)
                 if key == "valoracion":
-                    poemas =calificaciones.filter(CalificacionModel.valoracion == value)
+                    poemas = calificaciones.filter(CalificacionModel.valoracion == value)
+                if key == "fecha":
+                    poemas = poemas.filter(PoemaModel.fecha == value)
                 if key == "order_by":
                     if value == "titulo[desc]": #ordena los titulos de la z-a
                        poemas = poemas.order_by(PoemaModel.titulo.desc())
