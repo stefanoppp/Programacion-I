@@ -56,13 +56,17 @@ class Usuarios(Resource):
                         usuarios = usuarios.order_by(UsuarioModel.nombre.desc())
                     if value == "nombre": #ordena nombres de la a-z
                         usuarios = usuarios.order_by(UsuarioModel.nombre)
+                    if value == "poemas_cant":
+                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id))
+                    if value == "poemas_cant[desc]":
+                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id).desc())
         usuarios = usuarios.paginate(page,per_page,True,10)
         return jsonify({ 
-        'usuarios': [usuario.to_json() for usuario in usuarios.items],
-        'total':usuarios.total,
-        'paginas':usuarios.pages,
-        'pagina':page
-        })
+            'usuarios': [usuario.to_json() for usuario in usuarios.items],
+            'total':usuarios.total,
+            'paginas':usuarios.pages,
+            'pagina':page
+            })
 
     
     #Insertar recurso
