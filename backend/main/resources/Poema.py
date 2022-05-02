@@ -5,6 +5,7 @@ from main.models import PoemaModel,UsuarioModel,CalificacionModel
 from sqlalchemy import func
 
 
+
 #Recurso Poema
 class Poema(Resource):
    
@@ -13,7 +14,6 @@ class Poema(Resource):
         return poema.to_json_complete()
     
     def delete(self, id):
-        
         poema = db.session.query(PoemaModel).get_or_404(id)
         db.session.delete(poema)
         db.session.commit()

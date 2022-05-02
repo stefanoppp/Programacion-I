@@ -3,17 +3,20 @@ from flask import request,jsonify
 from .. import db
 from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func
+from flask_jwt_extended import jwt_required
+from main.auth.decoradores import admin_required
 
 
 #Recurso Usuario
 class Usuario(Resource):
-   
+    
+    @jwt_required(optional=True)
     def get(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
         return usuario.to_json_complete()
     
+    @admin_required
     def delete(self, id):
-        
         usuario = db.session.query(UsuarioModel).get_or_404(id)
         db.session.delete(usuario)
         db.session.commit()
@@ -21,6 +24,7 @@ class Usuario(Resource):
 
 
     #Modificar recurso
+    @jwt_required()
     def put(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
         data = request.get_json().items()
@@ -34,6 +38,7 @@ class Usuario(Resource):
 #Recurso Usuarios
 class Usuarios(Resource):
     #Obtener lista de recursos                #primero los filtros y luego ordenamiento
+    @jwt_required(optional=True)
     def get(self):
         page=1
         per_page=10

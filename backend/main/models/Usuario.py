@@ -1,5 +1,5 @@
-from email.policy import default
 from .. import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +10,17 @@ class Usuario(db.Model):
     poemas = db.relationship('Poema', back_populates = "usuario", cascade = 'all, delete-orphan')
     calificaciones = db.relationship('Calificacion', back_populates = "usuario", cascade = 'all, delete-orphan')
     
+    @property
+    def plain_password(self):
+        raise AttributeError("contraseña no permitida")
+    
+    @plain_password.setter
+    def plain_password(self,contrasena):
+        self.contrasena = generate_password_hash(contrasena)
+    
+    def validate_pass(self,contrasena):
+        return check_password_hash(self.contrasena,contrasena)
+
     #Convertir objeto en JSON
     
     def to_json_complete(self):
@@ -45,9 +56,9 @@ class Usuario(db.Model):
         contrasena = usuario_json.get('contrasena')
         admin = usuario_json.get('admin')
         
-        return Usuario(id=id,
-                    nombre=nombre,
-                    email=email,
-                    contrasena=contrasena,
+        return Usuario(id = id,
+                    nombre = nombre,
+                    email = email,
+                    plain_password = contrasena,
                     admin = admin
                     )

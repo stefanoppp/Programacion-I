@@ -1,14 +1,25 @@
 import os
 from flask import Flask
 from dotenv import load_dotenv
+
 #Importar librería flask_restful
 from flask_restful import Api
+
 #Importar SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
+
+#Importar Flask JWT
+from flask_jwt_extended import JWTManager
+
+
 #Inicializar API de Flask Restful
 api = Api()
+
 #Inicializar SQLAlchemy
 db = SQLAlchemy()
+
+#inicializar jwt
+jwt = JWTManager()
 
 def create_app():
     app = Flask(__name__)
@@ -36,4 +47,17 @@ def create_app():
     api.add_resource(resources.UsuarioResource, '/usuario/<id>')
     
     api.init_app(app) #Cargar la aplicación en la API de Flask Restful
+
+    #CARGAR LA CLAVE SECRETA JWT
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    
+    #CARGAR TIEMPO DE EXPIRACION DE LOS TOKENS
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+    jwt.init_app(app)
+
+    
+    from main.auth import rutas                   ##rutas aparte de autentificacion no estan asociadas a un recurso
+    #importar blueprint
+    app.register_blueprint(rutas.auth) #nombre carpeta y nombre ruta
+    
     return app
