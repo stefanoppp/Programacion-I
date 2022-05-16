@@ -3,7 +3,7 @@ from flask import request,jsonify
 from .. import db
 from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
 from main.auth.decoradores import admin_required
 
 
@@ -13,7 +13,12 @@ class Usuario(Resource):
     @jwt_required(optional=True)
     def get(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
-        return usuario.to_json_complete()
+        token_id = get_jwt_identity
+        claims = get_jwt()
+        if token_id == usuario.id or claims['admin']:
+            return usuario.to_json_complete()
+        else:
+            return usuario.to_json()
     
     @admin_required
     def delete(self, id):
