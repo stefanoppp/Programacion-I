@@ -8,7 +8,7 @@ from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
 
 #Recurso Poema
 class Poema(Resource):
-   
+    @jwt_required(optional=True)
     def get(self, id):
         poema = db.session.query(PoemaModel).get_or_404(id)
         return poema.to_json_complete()
@@ -23,7 +23,7 @@ class Poema(Resource):
             db.session.commit()
             return 'eliminacion exitosa', 204
         else:
-            return 'No permitido',403
+            return 'permiso denegado',403
 
 
     #Modificar recurso
