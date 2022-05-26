@@ -13,7 +13,7 @@ class Usuario(Resource):
     @jwt_required(optional=True)
     def get(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
-        token_id = get_jwt_identity
+        token_id = get_jwt_identity()
         claims = get_jwt()
         if token_id == usuario.id or claims['admin']:
             return usuario.to_json_complete()
@@ -32,12 +32,17 @@ class Usuario(Resource):
     @jwt_required()
     def put(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
-        data = request.get_json().items()
-        for key, value in data:
-            setattr(usuario, key, value)
-        db.session.add(usuario)
-        db.session.commit()
-        return usuario.to_json() , 201
+        token_id = get_jwt_identity()
+        claims = get_jwt()
+        if token_id == usuario.id or claims['admin']:
+            data = request.get_json().items()
+            for key, value in data:
+                setattr(usuario, key, value)
+            db.session.add(usuario)
+            db.session.commit()
+            return usuario.to_json() , 201
+        else:
+            return 'No tiene permisos',403
 
 
 #Recurso Usuarios
@@ -80,6 +85,7 @@ class Usuarios(Resource):
 
     
     #Insertar recurso
+    @admin_required
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json()) #traemos los valores del json
         db.session.add(usuario)

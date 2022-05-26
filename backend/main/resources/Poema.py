@@ -27,14 +27,21 @@ class Poema(Resource):
 
 
     #Modificar recurso
+    @jwt_required()
     def put(self, id):
         poema = db.session.query(PoemaModel).get_or_404(id)
         data = request.get_json().items()
-        for key, value in data:
-            setattr(poema, key, value)
-        db.session.add(poema)
-        db.session.commit()
-        return poema.to_json() , 201
+        token_id = get_jwt_identity()
+        claims = get_jwt()
+        if poema.usuarioId == token_id or claims['admin']:
+            data = request.get_json().items()
+            for key, value in data:
+                setattr(poema, key, value)
+            db.session.add(poema)
+            db.session.commit()
+            return poema.to_json() , 201
+        else:
+            return 'No tiene permisos',403
 
 
 #Recurso Poemas
@@ -94,12 +101,12 @@ class Poemas(Resource):
     
     #Insertar recurso
     @jwt_required()
-    def post(self):
+    def post(self): ###corregirrr
         try:
             poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
             usuario_id = get_jwt_identity()
-            poema.usuarioId = usuario_id  #el dueño del token va a ser el creador del poema
             usuario=db.session.query(UsuarioModel).get_or_404(usuario_id)
+            poema.usuarioId = usuario_id  #el dueño del token va a ser el creador del poema
             poemas_cant = len(usuario.poemas)
             calificaciones_cant = len(usuario.calificaciones)
             division = calificaciones_cant/poemas_cant
