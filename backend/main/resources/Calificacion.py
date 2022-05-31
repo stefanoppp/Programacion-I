@@ -3,6 +3,7 @@ from flask import request,jsonify
 from .. import db
 from main.models import CalificacionModel
 from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
+from main.mail.functions import sendmail
 
 
 #Recurso Calificacion
@@ -69,11 +70,21 @@ class Calificaciones(Resource):
 
     
     #Insertar recurso
-    def post(self):
-        try:
+    @jwt_required()
+    def post(self):  ##seguir codigo
+       
+            calificaciones = db.session.query(CalificacionModel).get_or_404(id)
             calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
-            db.session.add(calificacion)
-            db.session.commit()
+            usuario_id = get_jwt_identity()
+            cant_poem=calificaciones.poema
+            print(cant_poem)
+            ''''
+            if calificaciones.usuarioId == usuario_id and cant_poem<=2:      ## compruebo que sea el usuario logeado con el jwt
+                    db.session.add(calificacion)
+                    db.session.commit()
+            else:
+                return 'no se puede calificar su propio poema'
         except:
             return 'ingrese datos correctos',400
         return calificacion.to_json(), 201
+       '''
