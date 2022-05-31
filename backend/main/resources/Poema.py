@@ -98,22 +98,20 @@ class Poemas(Resource):
             'pagina':page
             })
 
-    
     #Insertar recurso
     @jwt_required()
     def post(self): ###corregirrr
-        try:
-            poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
-            usuario_id = get_jwt_identity()
-            usuario=db.session.query(UsuarioModel).get_or_404(usuario_id)
-            poema.usuarioId = usuario_id  #el dueño del token va a ser el creador del poema
-            poemas_cant = len(usuario.poemas)
-            calificaciones_cant = len(usuario.calificaciones)
-            division = calificaciones_cant/poemas_cant
-            if poemas_cant == 0 or division >=3:
-                db.session.add(poema)
-                db.session.commit()
-        except:
-            return 'usuario inexistente',400
-        return poema.to_json(), 201
-       
+        
+        poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
+        usuario_id = get_jwt_identity()
+        usuario=db.session.query(UsuarioModel).get_or_404(usuario_id)
+        poema.usuarioId = usuario_id  #el dueño del token va a ser el creador del poema
+        poemas_cant = len(usuario.poemas)
+        calificaciones_cant = len(usuario.calificaciones)
+        if calificaciones_cant >= (poemas_cant*3):
+            db.session.add(poema)
+            db.session.commit()
+            return poema.to_json(), 201
+        else:
+            return 'Este usuario necesita realizar mas calificaciones' 
+            #'usuario inexistente',400

@@ -72,14 +72,12 @@ class Calificaciones(Resource):
     #Insertar recurso
     @jwt_required()
     def post(self):  ##seguir codigo
-       
+        try:
             calificaciones = db.session.query(CalificacionModel).get_or_404(id)
             calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
             usuario_id = get_jwt_identity()
-            cant_poem=calificaciones.poema
-            print(cant_poem)
-            ''''
-            if calificaciones.usuarioId == usuario_id and cant_poem<=2:      ## compruebo que sea el usuario logeado con el jwt
+            
+            if calificaciones.usuarioId == usuario_id:      ## compruebo que sea el usuario logeado con el jwt
                     db.session.add(calificacion)
                     db.session.commit()
             else:
@@ -87,4 +85,3 @@ class Calificaciones(Resource):
         except:
             return 'ingrese datos correctos',400
         return calificacion.to_json(), 201
-       '''
