@@ -73,13 +73,18 @@ class Calificaciones(Resource):
     @jwt_required()
     def post(self):  ##agregar condicion de que un usuario pueda agregar otro poema si ha realizado 3 calificaciones
             calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
-            #print(calificacion.poemaId)
             usuario_id = get_jwt_identity()
             calificacion.usuarioId = usuario_id #Agrega la calificacion al dueno del token
             poema = db.session.query(PoemaModel).get_or_404(calificacion.poemaId) ##traigo modelo poema para trabajar con sus atributos
             if poema.usuarioId == usuario_id:      ## compruebo que sea el usuario logeado con el jwt
                 return 'No se puede calificar su propio poema'
             else:
-                db.session.add(calificacion)
-                db.session.commit()
-            return calificacion.to_json(), 201
+                try:
+                    db.session.add(calificacion)
+                    db.session.commit() 
+                    result = sendmail([calificacion.poema.usuario.email],'Nueva calificacion','nueva_calificacion',calificacion = calificacion)        
+                except Exception as error:
+                    #Si hay error, vuelve atras toda la base de datos
+                    #db.session.rollback()
+                    return str(error), 409        
+                return calificacion.to_json(), 201
