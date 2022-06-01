@@ -75,9 +75,10 @@ class Calificaciones(Resource):
             calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
             usuario_id = get_jwt_identity()
             #calificaciones = db.session.query(CalificacionModel).get_or_404(usuario_id)          #no va
-            if calificacion.usuarioId != usuario_id:      ## compruebo que sea el usuario logeado con el jwt
+            if calificacion.usuarioId == usuario_id:      ## compruebo que sea el usuario logeado con el jwt
+                return 'No se puede calificar su propio poema'
+            else:
+                calificacion.usuarioId = usuario_id #Agrega la calificacion al dueno del token
                 db.session.add(calificacion)
                 db.session.commit()
-            else:
-                return 'no se puede calificar su propio poema'
             return calificacion.to_json(), 201

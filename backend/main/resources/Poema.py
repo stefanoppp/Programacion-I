@@ -112,5 +112,5 @@ class Poemas(Resource):
             db.session.commit()
             return poema.to_json(), 201
         else:
-            return 'Este usuario necesita realizar mas calificaciones' 
+            return 'Este usuario necesita realizar mas calificaciones',403
             #'usuario inexistente',400
