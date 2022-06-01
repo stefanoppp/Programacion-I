@@ -100,7 +100,7 @@ class Poemas(Resource):
 
     #Insertar recurso
     @jwt_required()
-    def post(self): ###corregirrr   
+    def post(self):  
         poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
         usuario_id = get_jwt_identity()      #guardo token en usuario_id
         usuario=db.session.query(UsuarioModel).get_or_404(usuario_id)

@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request,jsonify
 from .. import db
-from main.models import CalificacionModel
+from main.models import CalificacionModel,PoemaModel
 from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
 from main.mail.functions import sendmail
 
@@ -73,12 +73,13 @@ class Calificaciones(Resource):
     @jwt_required()
     def post(self):  ##agregar condicion de que un usuario pueda agregar otro poema si ha realizado 3 calificaciones
             calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
+            #print(calificacion.poemaId)
             usuario_id = get_jwt_identity()
-            #calificaciones = db.session.query(CalificacionModel).get_or_404(usuario_id)          #no va
-            if calificacion.usuarioId == usuario_id:      ## compruebo que sea el usuario logeado con el jwt
+            calificacion.usuarioId = usuario_id #Agrega la calificacion al dueno del token
+            poema = db.session.query(PoemaModel).get_or_404(calificacion.poemaId) ##traigo modelo poema para trabajar con sus atributos
+            if poema.usuarioId == usuario_id:      ## compruebo que sea el usuario logeado con el jwt
                 return 'No se puede calificar su propio poema'
             else:
-                calificacion.usuarioId = usuario_id #Agrega la calificacion al dueno del token
                 db.session.add(calificacion)
                 db.session.commit()
             return calificacion.to_json(), 201
