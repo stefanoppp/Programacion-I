@@ -18,7 +18,7 @@ class Poema(Resource):
         usuario_id = get_jwt_identity()#extrae el id del usuario que esta en el token
         poema = db.session.query(PoemaModel).get_or_404(id)
         claims = get_jwt()
-        if poema.usuarioId == usuario_id or claims['admin']:
+        if poema.usuarioId == usuario_id or claims['admin']: #igualo del campo usuarioId con el token usuario_id
             db.session.delete(poema)
             db.session.commit()
             return 'eliminacion exitosa', 204
@@ -100,10 +100,9 @@ class Poemas(Resource):
 
     #Insertar recurso
     @jwt_required()
-    def post(self): ###corregirrr
-        
+    def post(self): ###corregirrr   
         poema = PoemaModel.from_json(request.get_json()) #traemos los valores del json
-        usuario_id = get_jwt_identity()
+        usuario_id = get_jwt_identity()      #guardo token en usuario_id
         usuario=db.session.query(UsuarioModel).get_or_404(usuario_id)
         poema.usuarioId = usuario_id  #el dueño del token va a ser el creador del poema
         poemas_cant = len(usuario.poemas)
