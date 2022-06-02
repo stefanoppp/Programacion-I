@@ -3,7 +3,7 @@ from flask import request,jsonify
 from .. import db
 from main.models import CalificacionModel,PoemaModel
 from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
-from main.mail.functions import sendmail
+from main.mail.mail_controlador import sendmail
 
 
 #Recurso Calificacion
