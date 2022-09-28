@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,100&display=swap');
+body{
+    background: #e7d7d7;
+    font-family: 'Bungee Spice', cursive; 
+}
+.dropdown{
+    text-align: center;
+}
+.card{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition:450ms
+    
+}
+.card:hover{
+  position: relative;
+  bottom:15px;
+  box-shadow: 5px 5px 5px 5px rgb(204, 202, 202);
+  transition:.5s;
+  margin-top: 5px;
+  margin-left: 5px;
+ 
+}
+
+.main{
+    margin-top: 50px;
+    max-height: 50px;
+    margin-bottom: 70px;
+    max-height: fit-content;
+
+}
+
+.puntaje{
+        color: rgb(48 46 46);
+        font-size: 11px;
+        padding-left: 8px;
+}
+
+footer{
+    font-family: 'Roboto';
+    font-weight: 400;
+    color:rgb(136, 135, 135);
+}
+
+footer p{
+    min-width: 360px;
+}
+
+.navbar{
+    padding-inline-start: 200px;
+    padding-inline-end: 200px;
+}
+
+.logo {
+    width: 50px;
+}
+
+.search-input{
+    min-width: 95px;
+}
+
+.nav-min{
+    min-width: 240px;
+}
+
+.flex-padding {
+    padding: 50px 100px 0px 100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    text-align: center;
+}
+
+@media(max-width:1050px){
+    .card-width{
+        width: 350px;
+    }
+}
