@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,100&display=swap');
+body{
+    background-image: url(/frontend/img/Bibliotecas-libros.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: cursive; 
+    }
+.dropdown{
+    text-align: center;
+}
+.card{
+    margin-bottom: 10px;
+}
+
+.formulario{
+    background: rgba(0,-0,-0,-.5);
+    padding: 20px;
+    border-radius:10px;
+}
+
+.ingresar{
+    background-attachment: fixed;
+    background-color: brown;
+}
+
+.logo {
+    width: 30px;
+}
