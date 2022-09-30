@@ -11,13 +11,15 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link rel="stylesheet" href="/frontend/css/style.css">
+  <link rel="stylesheet" href="/frontend/css/admin_dash.css">
   <title>Home</title>
 </head>
 
 <body>
   <nav class="navbar navbar_height navbar-expand-md bg-light shadow-nav">
     <div class="container-fluid mb-3 nav-min">
-      <a class="navbar-brand navbar_pad" href="/frontend/views/home.html"><img class="logo" src="/frontend/img/3627782.png"> Mi Poema</a>
+      <a class="navbar-brand navbar_pad" href="/frontend/views/home.html"><img class="logo"
+          src="/frontend/img/3627782.png"> Mi Poema</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -43,15 +45,45 @@
       </div>
     </div>
   </nav>
-  <div>
-    
+  <!----dash-->
+  <div class="tabla-dash">
+    <table class="table admin-dash">
+      <caption>Admin panel</caption>
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div>
-
-  </div>
+  <!----dash-->
   <div class="container_nav fixed-bottom">
     <footer class="navbar navbar-expand-md bg-light">
-          <p class="small position-relative top-50 start-50 translate-middle mt-3 mb-0 footer">&copy; Todos los drechos reservados :: Mi Poema :: Argentina</p>
+      <p class="small position-relative top-50 start-50 translate-middle mt-3 mb-0 footer">&copy; Todos los drechos
+        reservados :: Mi Poema :: Argentina</p>
     </footer>
   </div>
   <script src="/Programacion-I/frontend/touch_modal.js"></script>
