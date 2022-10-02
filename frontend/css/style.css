@@ -9,6 +9,10 @@ body{
     background-position: center;
     background-blend-mode: luminosity;
 }
+.filtro{
+   position:relative;
+   bottom: 30px;
+}
 
 .dropdown{
     text-align: center;
@@ -120,4 +124,20 @@ input::placeholder{
     .dropdown-home{
         margin-top:50px
     }
+  
 }
+@media(max-width:767px){
+    .navbar_pad{
+        position: relative;
+        bottom: 10px;
+    }
+    .boton-header{
+        position: relative;
+        bottom:5px;
+    }
+    .shadow-nav{
+        padding: 10px 10px 10px;
+    }
+}
+      
+    
