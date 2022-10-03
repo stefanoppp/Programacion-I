@@ -1,0 +1,14 @@
+.navbar_hide{
+   display: none;
+}
+.sombra_contenedor{
+    box-shadow: 0px 0px 20px 8px;
+}
+.btn-editar{
+    background-color: #4f48af;
+    color: white
+}
+.btn-editar:hover {
+    background-color: #5b69e9 !important;
+    color: white !important;
+}
