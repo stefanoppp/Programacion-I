@@ -35,3 +35,5 @@ setInterval(()=>
   if(contador > 0){count++}
   if(count == 3){confirm.disabled = false}else{confirm.disabled = true}
 }, 200)
+
+
