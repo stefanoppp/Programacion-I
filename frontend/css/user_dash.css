@@ -31,6 +31,12 @@
     position:static;
    
 }
+.modal-footer{
+    display: block;
+}
+.modal-config{
+    display:none;
+}
 @media(max-width:1200px){
     .nav-min{
         display: flex;
