@@ -1,7 +1,6 @@
 body {
-    height: 1000px;
-    background-image: none;
-    background-color: white;
+    height: 1100px;
+    background-image: url(/frontend/img/flowers.jpg); 
 }
 
 .tabla-admin {
@@ -12,6 +11,7 @@ body {
 
 .tabla-admin-align {
     text-align: center;
+    background-color: white;
 }
 
 .col-color {
@@ -39,8 +39,7 @@ body {
     border-radius: 5px;
     width: 100%;
     box-shadow: 1px 1px 5px 0px;
-    ;
-
+    background-color: white;
 }
 
 .input-size {
@@ -96,6 +95,7 @@ body {
 footer {
     position: relative;
     top: 65px;
+   
 
 }
 
@@ -121,7 +121,6 @@ footer {
         position: relative;
         top:15px;
     }
-    .
 }
 @media(max-width:551px) {
     .input-size {

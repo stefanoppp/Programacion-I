@@ -155,4 +155,10 @@ input::placeholder {
     .shadow-nav {
         padding: 10px 10px 10px;
     }
+    .navbar-toggler-icon{
+        display: none;
+    }
+    .boton-header{
+        display: none;
+    }
 }
