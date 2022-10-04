@@ -123,3 +123,25 @@ input::placeholder{
     color: rgb(143, 124, 160) !important;
 
 }
+.search-oculto{
+  display: none;
+}
+.boton-oculto{
+  display: none;
+}
+
+.nav-min{
+  display: flex;
+  flex-direction: unset;
+  gap: 70%;
+  flex-wrap: nowrap;
+}
+
+@media(max-width:696px) {
+  .nav-min{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction:column
+  }
+
+}

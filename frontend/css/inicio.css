@@ -93,10 +93,6 @@ footer p {
     box-shadow: 0px 1px 8px 3px #000000;
 }
 
-.navbar_height {
-    height: 70px;
-}
-
 .navbar_pad {
     padding-top: 22px;
 }
@@ -155,10 +151,10 @@ input::placeholder {
     .shadow-nav {
         padding: 10px 10px 10px;
     }
-    .navbar-toggler-icon{
+    /*.navbar-toggler-icon{
         display: none;
     }
     .boton-header{
         display: none;
-    }
+    }*/
 }
