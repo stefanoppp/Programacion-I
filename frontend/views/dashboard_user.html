@@ -43,8 +43,8 @@
                             <span class="material-symbols-outlined logo-profile dropdown-item">
                                 person
                             </span>
-                        </ul>    
-                    </li> 
+                        </ul>
+                    </li>
                 </ul>
                 <form class="d-flex navbar_pad" role="search">
                     <input class="form-control me-2 search-input d-none" type="search" placeholder="Buscar"
@@ -65,14 +65,15 @@
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKv72ODnHJ_e3H8oZuvEAIcYa5gbMCxgBtTg&usqp=CAU"
                                     alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                     style="width: 150px; z-index: 1">
-                                <button type="button" id="editar_perfil" class="btn btn-editar" data-mdb-ripple-color="dark"
+                                <button type="button" id="editar_perfil" class="btn btn-editar"
+                                    data-mdb-ripple-color="dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                     style="z-index: 1;">
                                     Editar perfil
                                 </button>
                             </div>
                             <div class="ms-3" style="margin-top: 130px;">
-                                <h5>Programacion I</h5>
-                                <p>Argentina</p>
+                                <h5 id="userName">{Nombre}</h5>
+                                <p id="userEmail">{Email}</p>
                             </div>
                         </div>
                         <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -83,11 +84,7 @@
                                 </div>
                                 <div class="px-3">
                                     <p class="mb-1 h5">1026</p>
-                                    <p class="small text-muted mb-0">seguidores</p>
-                                </div>
-                                <div>
-                                    <p class="mb-1 h5">478</p>
-                                    <p class="small text-muted mb-0">Seguidos</p>
+                                    <p class="small text-muted mb-0">Reseñas</p>
                                 </div>
                             </div>
                         </div>
@@ -100,40 +97,48 @@
                                 <div class="col mb-2">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This card has supporting text below as a natural
+                                                lead-in to additional content.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small></p>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col mb-2">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This card has supporting text below as a natural
+                                                lead-in to additional content.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small></p>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row g-2">
                                 <div class="col">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This card has supporting text below as a natural
+                                                lead-in to additional content.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small></p>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This card has supporting text below as a natural
+                                                lead-in to additional content.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small></p>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,29 +148,31 @@
         </div>
     </section>
     <!------Modal-->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body modal-body-poema">
-                <p><em id="resena-modal"></em></p>
-                <h4 id="calificacion"></h4>
-            </div>
-            <form action="#" method="GET">
-                <div class="modal-footer">
-                    <input type="hidden" name="nombre">
-                    <input type="hidden" name="calificacion">
-                    <input type="hidden" name="estrella">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Confirmar</button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </form>
-          </div>
+                <div class="modal-body modal-body-poema">
+                    <p><em id="resena-modal"></em></p>
+                    <h4 id="calificacion"></h4>
+                </div>
+                <form action="#" method="GET">
+                    <div class="modal-footer">
+                        <input type="text" name="nombre" id="modalUser" placeholder="Nombre Completo">
+                        <input type="email" name="email" id="modalEmail" placeholder="Email">
+                        <input type="password" name="password" id="modalPassword" placeholder="Contraseña">
+                        <input type="password" name="password2" id="modalPassword2" placeholder="Confirmar container">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
+    </div>
 
     <!--------------------->
     <div class="container_nav fixed-bottom">
