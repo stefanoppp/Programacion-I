@@ -11,9 +11,10 @@ import { DashboardUserComponent } from './pages/dashboard-user/dashboard-user.co
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { PoemasComponent } from './pages/poemas/poemas.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { ModalComponent } from './components/modal-user/modal.component';
+import { ModalComponent } from './components/modal-user/modal-user.component';
 import { PageNavigHomeComponent } from './components/page-navig-home/page-navig-home.component';
 import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.component';
+import { PageNavigAdminComponent } from './components/page-navig-admin/page-navig-admin.component';
 
 
 
@@ -31,6 +32,7 @@ import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.com
     ModalComponent,
     PageNavigHomeComponent,
     ModalPoemasComponent,
+    PageNavigAdminComponent,
    
   ],
   imports: [

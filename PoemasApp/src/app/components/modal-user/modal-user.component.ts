@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal-user',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  templateUrl: './modal-user.component.html',
+  styleUrls: ['./modal-user.component.css']
 })
 export class ModalComponent implements OnInit {
 

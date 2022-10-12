@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalComponent } from './modal.component';
+import { PageNavigAdminComponent } from './page-navig-admin.component';
 
-describe('ModalComponent', () => {
-  let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
+describe('PageNavigAdminComponent', () => {
+  let component: PageNavigAdminComponent;
+  let fixture: ComponentFixture<PageNavigAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalComponent ]
+      declarations: [ PageNavigAdminComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalComponent);
+    fixture = TestBed.createComponent(PageNavigAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
