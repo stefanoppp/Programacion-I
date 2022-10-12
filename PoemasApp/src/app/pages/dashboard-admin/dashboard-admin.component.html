@@ -1,54 +1,21 @@
-
-    <nav class="navbar navbar-expand-md bg-light shadow-nav">
-        <div class="container-fluid mb-3 nav-min">
-            <a class="navbar-brand navbar_pad" href="/frontend/views/home.html"><img class="logo"
-                    src="/frontend/img/3627782.png"> Mi Poema</a>
-            <button class="navbar-toggler boton-header" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-lg-0 navbar-home">
-                    <li class="nav-item ">
-                        <a class="nav-link active navbar_pad" aria-current="page"
-                            href="/frontend/views/registro.html">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navbar_pad" href="/frontend/views/login.html">Login</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Registrarse</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex navbar_pad" role="search">
-                    <input class="form-control me-2 search-input " type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+    <app-header></app-header>
+    <div class="container tabla-admin">
+            <div class="navbar navbar-expand-sm navbar-dark navbar-position navbar-size p-4">
+                <a href="#" class="link-primary text-decoration-none d-flex letra-tamano"><span
+                        class="material-symbols-rounded agregar-tamano">note_add</span>Nuevo poeta</a>
+                <form class="form-inline form-content" action="/action_page.php">
+                    <input class="form-control mr-sm-2 input-size" type="text" placeholder="Search">
+                    <button class="btn-size" type="submit">Search</button>
                 </form>
             </div>
-        </div>
-    </nav>
-
-    <div class="container tabla-admin">
-        <table class="table align-middle table-md tabla-admin-align table-striped table-bordered">
+            <table class="table align-middle table-md tabla-admin-align table-striped table-bordered">
             <thead class="table col-color">
-                <nav class="navbar navbar-expand-sm navbar-dark navbar-position navbar-size p-4">
-                    <a href="#" class="link-primary text-decoration-none d-flex letra-tamano"><span
-                            class="material-symbols-rounded agregar-tamano">note_add</span>Nuevo poeta</a>
-                    <form class="form-inline" action="/action_page.php">
-                        <input class="form-control mr-sm-2 input-size" type="text" placeholder="Search">
-                        <button class="btn-size" type="submit">Search</button>
-                    </form>
-                </nav>
                 <th scope="col" class="col-chica">ID</th>
                 <th scope="col" class="col-normal">Nombre</th>
                 <th scope="col" class="col-normal">Email</th>
                 <th scope="col" class="col-chica">Cantidad Poemas</th>
                 <th scope="col" class="col-chica">Cantidad Calificaciones</th>
-                <th scope="col" class="col-iconos bg-gradient"></th>
+                <th scope="col" class="col-iconos"></th>
             </thead>
             <tbody class="table-group-divider">
                 <tr>
