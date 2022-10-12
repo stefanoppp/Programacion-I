@@ -3,28 +3,35 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-//import { HeaderComponent } from './header/header.component';
-//import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
-//import { ComponentsComponent } from './components/components/components.component';
-//import { CardsComponent } from './components/cards/cards.component';
+import { CardsComponent } from './components/cards/cards.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardUserComponent } from './pages/dashboard-user/dashboard-user.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { PoemasComponent } from './pages/poemas/poemas.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { ModalComponent } from './components/modal-user/modal.component';
+import { PageNavigHomeComponent } from './components/page-navig-home/page-navig-home.component';
+import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-  //  HeaderComponent,
-  //  FooterComponent,
+    FooterComponent,
     HomeComponent,
-  //  ComponentsComponent,
-  //  CardsComponent,
+    CardsComponent,
     LoginComponent,
     DashboardUserComponent,
     DashboardAdminComponent,
-    PoemasComponent
+    PoemasComponent,
+    DropdownComponent,
+    ModalComponent,
+    PageNavigHomeComponent,
+    ModalPoemasComponent,
+   
   ],
   imports: [
     BrowserModule,
