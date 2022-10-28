@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'admin',component:DashboardAdminComponent},
   {path:'user',component:DashboardUserComponent},
   {path: 'user/:id', component:DashboardUserComponent },
-
+  {path:'poema/:id',component:PoemasComponent},
 ];
 
 @NgModule({
