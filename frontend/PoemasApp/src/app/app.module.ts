@@ -16,6 +16,7 @@ import { PageNavigHomeComponent } from './components/page-navig-home/page-navig-
 import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.component';
 import { PageNavigAdminComponent } from './components/page-navig-admin/page-navig-admin.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ViewUsersComponent } from './components/view-users/view-users.component';
 
 
 
@@ -35,6 +36,7 @@ import { HeaderComponent } from './components/header/header.component';
     ModalPoemasComponent,
     PageNavigAdminComponent,
     HeaderComponent,
+    ViewUsersComponent,
   ],
   imports: [
     BrowserModule,
