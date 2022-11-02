@@ -1,0 +1,16 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col"*ngFor="let poe of arrayPoemas">
+    <div class="card card-home">
+      <div class="card-header">{{poe.usuario}}<i class="fa-solid fa-star"
+          style="cursor: pointer; float: right; color:orange; text-shadow: black 0px 0px;">
+          <font class="puntaje">{{poe.calificacion}}</font>
+        </i>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{poe.titulo}}</h5>
+        <p class="card-text">{{poe.contenido}}</p>
+        <a href="poemas" class="btn btn_poema">Ver poema</a>
+      </div>
+    </div>
+  </div>
+</div>
