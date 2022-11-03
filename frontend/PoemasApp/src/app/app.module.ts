@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -18,6 +18,7 @@ import { PageNavigAdminComponent } from './components/page-navig-admin/page-navi
 import { HeaderComponent } from './components/header/header.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { HeaderNoSearchComponent } from './components/header-no-search/header-no-search.component';
+import { UsuarioService } from './service/usuario.service';
 
 
 @NgModule({
@@ -37,10 +38,12 @@ import { HeaderNoSearchComponent } from './components/header-no-search/header-no
     PageNavigAdminComponent,
     HeaderComponent,
     ViewUsersComponent,
-    HeaderNoSearchComponent, ],
+    HeaderNoSearchComponent,
+   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
