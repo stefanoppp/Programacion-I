@@ -17,7 +17,7 @@ import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.com
 import { PageNavigAdminComponent } from './components/page-navig-admin/page-navig-admin.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
-
+import { HeaderNoSearchComponent } from './components/header-no-search/header-no-search.component';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { ViewUsersComponent } from './components/view-users/view-users.component
     PageNavigAdminComponent,
     HeaderComponent,
     ViewUsersComponent,
-  ],
+    HeaderNoSearchComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule
