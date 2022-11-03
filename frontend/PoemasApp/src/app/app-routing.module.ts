@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:'user',component:DashboardUserComponent},
   {path: 'user/:id', component:DashboardUserComponent },
   {path:'poema/:id',component:PoemasComponent},
+
 ];
 
 @NgModule({
