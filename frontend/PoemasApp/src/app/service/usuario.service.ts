@@ -15,6 +15,7 @@ export class UsuarioService {
   getUsuarios() {
     return this.httpClient.get(this.url);
   } 
+  //getUsuario()
 }
 
 
