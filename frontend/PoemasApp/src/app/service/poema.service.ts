@@ -1,20 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
+export class PoemaService {
 
-export class UsuarioService {
-  url = 'api/usuarios';
+  url = 'api/poemas';
   
   constructor(
   private httpClient: HttpClient
   ) { } 
-  getUsuarios() {
+  getPoemas() {
     return this.httpClient.get(this.url);
-  } 
+  }
+
+  getPoema()
 }
-
-

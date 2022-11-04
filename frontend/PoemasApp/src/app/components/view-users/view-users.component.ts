@@ -7,8 +7,8 @@ import { UsuarioService } from './../../service/usuario.service';
   styleUrls: ['./view-users.component.css']
 })
 export class ViewUsersComponent implements OnInit {
-
-    arrayUsuarios: any;
+    
+    arrayUsuarios: any[] = [];
 
     constructor(
       //private router: Router,
@@ -19,8 +19,8 @@ export class ViewUsersComponent implements OnInit {
   ngOnInit(): void {
     
     this.postUsuario.getUsuarios().subscribe((data:any) =>{
-      console.log('JSON data:', data.data);
-      this.arrayUsuarios = data.Usuarios;})
+      console.log('JSON data:', data.usuarios);
+      this.arrayUsuarios = data.usuarios})
      
     }
   }
