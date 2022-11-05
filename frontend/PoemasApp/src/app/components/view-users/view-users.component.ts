@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UsuarioService } from './../../service/usuario.service';
 @Component({
   selector: 'app-view-users',

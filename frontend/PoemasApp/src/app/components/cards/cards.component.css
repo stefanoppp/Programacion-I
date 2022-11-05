@@ -5,6 +5,9 @@
     transition: 450ms;
     box-shadow: 0px 1px 8px 0px #000000;
 }
+cite{
+    font-weight: bolder;
+}
 
 .card-home:hover {
     position: relative;
@@ -17,6 +20,8 @@
 .card-header {
     padding-left: 67px;
     background: #c8caeb;
+    font-size: 16px;
+    font-weight: bolder;
 }
 .btn_poema {
     background-color: #4f48af;

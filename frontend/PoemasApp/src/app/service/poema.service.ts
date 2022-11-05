@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class PoemaService {
 
   url = 'api/poemas';
+  url2 ='api/poema'
   
   constructor(
   private httpClient: HttpClient
@@ -15,5 +16,7 @@ export class PoemaService {
     return this.httpClient.get(this.url);
   }
 
-  //getPoema() 
+  getPoema(){
+    return this.httpClient.get(this.url2);
+  } 
 }

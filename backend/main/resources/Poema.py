@@ -90,7 +90,7 @@ class Poemas(Resource):
                             poemas = poemas.order_by(PoemaModel.fecha)
                 else:
                     poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.id).order_by(CalificacionModel.valoracion.desc(), PoemaModel.fecha)
-        poemas=poemas.paginate(page,per_page,True,10) # era 10 por defecto
+        poemas=poemas.paginate(page,per_page,True,6) # era 10 por defecto
         return jsonify({ 
             'poemas':[poema.to_json_complete() for poema in poemas.items],
             'total':poemas.total,

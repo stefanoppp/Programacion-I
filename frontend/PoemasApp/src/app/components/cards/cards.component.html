@@ -3,13 +3,20 @@
     <div class="card card-home">
       <div class="card-header">{{poe.titulo}}<i class="fa-solid fa-star"
           style="cursor: pointer; float: right; color:orange; text-shadow: black 0px 0px;">
-          <font class="puntaje">{{poe.calificacion}}</font>
+          <font class="puntaje">{{poe.calificacion[0]?.valoracion}}</font>
         </i>
       </div>
       <div class="card-body">
-        <h5 class="card-title">{{poe.nombre}}</h5>
-        <p class="card-text">{{poe.contenido}}</p>
-        <a routerLink="/poema/{{poe.id}}" class="btn btn_poema">Ver poema</a>
+        <!--<h5 class="card-title">{{poe.contenido}}</h5>-->
+        <p class="card-text p-3">{{poe.contenido.substr(0,80)}}</p>
+        <a routerLink="/poema/{{poe.id}}" class="btn btn_poema p-1">Ver poema</a>
+        <hr>
+        <small class="text-muted">
+          Posteado por <cite title="Source Title">{{poe.usuario.nombre}}</cite>
+        </small>
+        <small class="text-muted">
+          el dia&nbsp;<cite title="Source Title">{{poe.fecha.substr(0,10)}}</cite>
+        </small>
       </div>
     </div>
   </div>
