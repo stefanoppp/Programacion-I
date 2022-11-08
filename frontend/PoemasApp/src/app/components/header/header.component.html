@@ -12,7 +12,7 @@
           <a class="nav-link active navbar_pad" aria-current="page" routerLink="/login">Login</a>
         </li>
         <li *ngIf="isToken" class="nav-item ">
-          <a class="nav-link active navbar_pad" aria-current="page" (click)="cerrarSesion()">Cerrar sesion</a>
+          <a class="nav-link active navbar_pad" aria-current="page" (click)="cerrarSesion()" routerLink="/">Cerrar sesion</a>
         </li>
       </ul>
       <form class="d-flex navbar_pad" role="search">
