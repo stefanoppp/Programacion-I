@@ -18,4 +18,8 @@ export class CardsComponent implements OnInit {
       this.arrayPoemas = data.poemas})
      
     }
+    get token(){
+      return localStorage.getItem("token") || undefined
+
+    }
 }
