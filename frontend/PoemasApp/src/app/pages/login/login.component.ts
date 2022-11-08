@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth1Service } from 'src/app/service/auth1.service';
 import {Router} from '@angular/router'
+import Swal from 'sweetalert2';
+
 //import{}            
 
 @Component({
@@ -24,16 +26,28 @@ export class LoginComponent implements OnInit {
         next: (rta) => {
           console.log('login exitoso!',rta.access_token);
           localStorage.setItem('token',rta.access_token);
+          Swal.fire({
+              title: 'Login exitoso!',
+              text:'Bienvenido a miPoema',
+              timer:2000,
+              icon: 'success'
+            })
+          this.router.navigate(['/'])
 
       }, error: (error) => {
-          alert('credenciales incorrectas');        //puedo colocar algun swiss alert
+        Swal.fire({
+          title: 'Credenciales incorrectas',
+          text:'Intente nuevamente',
+          icon: 'error'
+        })       //puedo colocar algun swiss alert
           console.log('error',error);
           localStorage.removeItem('token');
+          this.router.navigate(['/login'])
 
       }, complete: () =>{
           console.log('termino')
       }
     })
-    this.router.navigate(['/'])
+    
   }
 }
