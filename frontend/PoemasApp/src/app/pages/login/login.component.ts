@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth1Service } from 'src/app/service/auth1.service';
+import {Router} from '@angular/router'
 //import{}            
 
 @Component({
@@ -10,7 +11,8 @@ import { Auth1Service } from 'src/app/service/auth1.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private authService: Auth1Service
+    private authService: Auth1Service,
+    private router: Router
   ) { }
 
   ngOnInit(): void {  
@@ -32,5 +34,6 @@ export class LoginComponent implements OnInit {
           console.log('termino')
       }
     })
+    this.router.navigate(['/'])
   }
 }
