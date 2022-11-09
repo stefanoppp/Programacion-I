@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth1Service } from 'src/app/service/auth1.service';
 import {Router} from '@angular/router'
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //import{}            
 
@@ -11,20 +12,27 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm!: FormGroup
 
   constructor(
     private authService: Auth1Service,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['',Validators.required],
+      contrasena: ['',Validators.required]
+    }) 
   }
-  login() {
+  login(dataLogin:any) {
     console.log('Comprobando credenciales..');
-    this.authService.login().subscribe({          //me conecto con el servicio 
+    this.authService.login(dataLogin).subscribe({          //me conecto con el servicio 
                           
         next: (rta) => {
           console.log('login exitoso!',rta.access_token);
+          console.log('login exitoso!',rta.admin); //muestro el admin
           localStorage.setItem('token',rta.access_token);
           Swal.fire({
               title: 'Login exitoso!',
@@ -48,6 +56,16 @@ export class LoginComponent implements OnInit {
           console.log('termino')
       }
     })
-    
+  }
+  submit(){
+    if(this.loginForm.valid){
+      console.log(this.loginForm.value)
+      let email = this.loginForm.value.email
+      let contrasena = this.loginForm.value.contrasena
+      // console.log('credenciales:',{email,contrasena})
+      this.login({email,contrasena})
+    }else{
+      alert("formulario invalido")
+    }
   }
 }

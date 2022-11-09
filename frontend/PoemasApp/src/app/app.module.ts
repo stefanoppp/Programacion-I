@@ -19,6 +19,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { HeaderNoSearchComponent } from './components/header-no-search/header-no-search.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {FormsModule} from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -45,7 +47,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]

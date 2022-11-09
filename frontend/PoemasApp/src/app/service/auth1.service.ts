@@ -15,8 +15,8 @@ export class Auth1Service {
     private httpClient:HttpClient,
     private router: Router
   ) { }
-  login(): Observable<any> {
-    let dataLogin ={email:"pancho@gmail.com", contrasena: "12345"}
+  login(dataLogin:any): Observable<any> {
+    //let dataLogin ={email:"pancho@gmail.com", contrasena: "12345"}
     console.log(environment.url)
     return this.httpClient.post("api/auth/login",dataLogin).pipe(take(1))
 
