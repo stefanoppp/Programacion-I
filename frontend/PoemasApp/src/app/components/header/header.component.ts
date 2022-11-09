@@ -19,5 +19,8 @@ export class HeaderComponent implements OnInit {
   cerrarSesion(){
     this.authService.logout()
   }
+  get isAdmin(){
+    return localStorage.getItem("admin") ==='true'?true:false || undefined
+  }
 
 }

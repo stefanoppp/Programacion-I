@@ -39,6 +39,7 @@ export class Auth1Service {
           'success'
         ).then(()=>{
           localStorage.removeItem('token')
+          localStorage.removeItem('admin')
           this.router.navigate(['/'])
         })
       }

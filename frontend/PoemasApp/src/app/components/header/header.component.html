@@ -14,6 +14,9 @@
         <li *ngIf="isToken" class="nav-item ">
           <a class="nav-link active navbar_pad" aria-current="page" (click)="cerrarSesion()" routerLink="/">Cerrar sesion</a>
         </li>
+        <li *ngIf="isAdmin"  class="nav-item ">
+          <a class="nav-link active navbar_pad" aria-current="page" routerLink="/admin">Usuarios</a>
+        </li>
       </ul>
       <form class="d-flex navbar_pad" role="search">
         <input class="form-control me-2 search-input " type="search" placeholder="Buscar" aria-label="Search">

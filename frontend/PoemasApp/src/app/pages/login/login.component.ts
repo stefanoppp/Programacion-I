@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
           console.log('login exitoso!',rta.access_token);
           console.log('login exitoso!',rta.admin); //muestro el admin
           localStorage.setItem('token',rta.access_token);
+          localStorage.setItem('admin',rta.admin);
           Swal.fire({
               title: 'Login exitoso!',
               text:'Bienvenido a miPoema',
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
         })       //puedo colocar algun swiss alert
           console.log('error',error);
           localStorage.removeItem('token');
+          localStorage.removeItem('admin');
           this.router.navigate(['/login'])
 
       }, complete: () =>{
