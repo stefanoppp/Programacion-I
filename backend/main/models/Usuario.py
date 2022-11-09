@@ -59,6 +59,6 @@ class Usuario(db.Model):
         return Usuario(id = id,
                     nombre = nombre,
                     email = email,
-                    plain_password = contrasena,
+                    contrasena = contrasena,
                     admin = admin
                     )
