@@ -7,7 +7,7 @@ from . import UsuarioModel
 class Poema(db.Model):
     id = db.Column(db.Integer, primary_key=True) #contenido base de datos
     titulo = db.Column(db.String(100), nullable=False) #contenido base de datos
-    contenido = db.Column(db.String(100), nullable=False) #contenido base de datos
+    contenido = db.Column(db.String(500), nullable=False) #contenido base de datos
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.now() ) #contenido base de datos
     usuarioId = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False) # establezco la relacion con la fk
     usuario = db.relationship('Usuario',back_populates = "poemas", uselist=False, single_parent=True) #relacion, en back_populates le indico con que atributo se esta relacionando, en el archivo poema con el atributo poemas del archivo de usuario

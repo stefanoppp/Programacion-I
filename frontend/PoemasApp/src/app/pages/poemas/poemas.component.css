@@ -20,7 +20,14 @@ textarea{
     color: rgb(143, 124, 160);
 }
 
-
+.card-title{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.card-text{
+    font-size: 20px;
+    font-weight:lighter;
+}
 .card-form {
     min-width: 300px;
     margin-left: auto;

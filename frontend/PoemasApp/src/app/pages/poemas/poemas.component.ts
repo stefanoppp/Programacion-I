@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PoemaService } from 'src/app/service/poema.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-poemas',
@@ -7,15 +8,16 @@ import { PoemaService } from 'src/app/service/poema.service';
   styleUrls: ['./poemas.component.css']
 })
 export class PoemasComponent implements OnInit {
-  arrayPoema: any[] = [];
-  constructor(private poemaService: PoemaService,) { }
+  arrayPoema:any
+  id!:string
+  constructor(private poemaService: PoemaService, private router:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.poemaService.getPoema().subscribe((data:any)=>{
-      console.log('JSON data:',data.poemas);
-      this.arrayPoema = data.poemas
-    })
-
+    this.id=this.router.snapshot.paramMap.get('id') ||''
+    this.poemaService.getPoema(this.id).subscribe((poema:any)=>{
+       console.log('JSON data:',poema);
+       this.arrayPoema = poema
+   })
   }
 
 }

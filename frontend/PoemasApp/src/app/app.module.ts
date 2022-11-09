@@ -18,6 +18,7 @@ import { PageNavigAdminComponent } from './components/page-navig-admin/page-navi
 import { HeaderComponent } from './components/header/header.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { HeaderNoSearchComponent } from './components/header-no-search/header-no-search.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -46,7 +47,7 @@ import { HeaderNoSearchComponent } from './components/header-no-search/header-no
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

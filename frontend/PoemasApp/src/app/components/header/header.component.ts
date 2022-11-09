@@ -7,7 +7,6 @@ import { Auth1Service } from 'src/app/service/auth1.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  admin = true
   constructor(
     private authService:Auth1Service
   ) { }
