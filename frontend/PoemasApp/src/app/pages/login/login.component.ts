@@ -65,7 +65,22 @@ export class LoginComponent implements OnInit {
       // console.log('credenciales:',{email,contrasena})
       this.login({email,contrasena})
     }else{
-      alert("formulario invalido")
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'Debe llenar todos los campos'
+      })
     }
   }
 }
