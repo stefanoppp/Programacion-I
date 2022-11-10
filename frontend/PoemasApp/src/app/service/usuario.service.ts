@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class UsuarioService {
   url = 'api/usuarios';
+  url2 ='api/usuario/'
+  headers = new HttpHeaders() || undefined
   
   constructor(
   private httpClient: HttpClient
@@ -15,7 +17,15 @@ export class UsuarioService {
   getUsuarios() {
     return this.httpClient.get(this.url);
   } 
-  //getUsuario()
+  getUsuario(id:string){
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.httpClient.get(this.url2+id,requestOptions);
+  }
 }
 
 

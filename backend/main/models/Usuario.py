@@ -34,6 +34,7 @@ class Usuario(db.Model):
             'poemas_cant':len(poemas),
             'poemas': poemas,
             'calificaciones':calificaciones,
+            'calificaciones_cant':len(self.calificaciones)
         }
         return usuario_json
 

@@ -6,14 +6,15 @@ import { PoemasComponent } from './pages/poemas/poemas.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component'
 import { DashboardUserComponent } from './pages/dashboard-user/dashboard-user.component'
 import { AuthsessionGuard } from './guards/authsession.guard';
+import { AdminsessionGuard } from './guards/adminsession.guard';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'poemas',component:PoemasComponent},
-  {path:'admin',component:DashboardAdminComponent},
-  {path:'user',component:DashboardUserComponent},
-  {path: 'user/:id', component:DashboardUserComponent},
+  {path:'admin',component:DashboardAdminComponent,canActivate:[AdminsessionGuard]},
+  {path:'user',component:DashboardUserComponent,canActivate:[AdminsessionGuard]},
+  {path: 'user/:id', component:DashboardUserComponent,canActivate:[AdminsessionGuard]},
   {path:'poema/:id',component:PoemasComponent,canActivate:[AuthsessionGuard]},
   //{path:'poema/:id',component:PoemasComponent, canActivate:[AuthsessionGuard]},   para proteger la ruta actua como un middleware
 ];
