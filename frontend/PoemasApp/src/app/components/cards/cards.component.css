@@ -44,3 +44,9 @@ cite{
         width: 350px;
     }
 }
+
+
+.page-item:active {
+    background-color: red;
+    
+}
