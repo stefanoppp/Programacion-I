@@ -13,14 +13,12 @@
 .shadow-nav {
     box-shadow: 0px 1px 8px 3px #000000;
 }
-.usuarios_estilo{
-    font-weight: bolder;
-    font-style: oblique;
-    box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.2);
-    color:rgb(115, 58, 168) !important;
-    border-radius: 5px;
-
+/* .usuarios_estilo{
+ 
 }
+.usuarios_estilo:hover{
+ 
+} */
 .navbar_pad {
     padding-top: 22px;
 }
