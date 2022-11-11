@@ -13,7 +13,12 @@
     min-width: 240px;
 }
 
-
+hr{
+    color: #535353;
+    width: 70%;
+    margin-left: 15%;
+    box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
 
 .shadow-nav {
     box-shadow: 0px 1px 8px 3px #000000;

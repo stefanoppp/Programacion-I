@@ -19,7 +19,7 @@ export class DashboardUserComponent implements OnInit {
   ngOnInit(): void {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || '';
     this.usuarioService.getUsuario(this.usuario_id).subscribe((usuario:any)=>{
-      console.log('Usuario:',usuario);
+      console.log('Usuario completo :',usuario);
       this.arrayUsuario = usuario
   })
   }
