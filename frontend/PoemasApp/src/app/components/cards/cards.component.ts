@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Paginado } from 'src/app/models/paginado.model';
 import { PoemaService } from 'src/app/service/poema.service';
 

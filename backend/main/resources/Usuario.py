@@ -53,6 +53,9 @@ class Usuarios(Resource):
         page=1
         per_page=10
         usuarios = db.session.query(UsuarioModel)
+        nombre = request.args.get('nombre') #tomo el nombre por parametro y no por el cuerpo
+        if nombre is not None:
+            usuarios = usuarios.filter(UsuarioModel.nombre.like("%"+nombre+"%"))
         if request.get_json():
             filters=request.get_json().items()
             for key,value in filters:
