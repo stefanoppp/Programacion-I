@@ -10,15 +10,17 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <p><em id="resena-modal"></em></p>
             <h4 id="calificacion"></h4>
         </div>
-        <form action="#" method="GET">
-            <div class="modal-footer">
-                <input type="text" name="nombre" id="modalUser" placeholder="Nombre Completo">
-                <input type="email" name="email" id="modalEmail" placeholder="Email">
-                <input type="password" name="password" id="modalPassword" placeholder="Contraseña">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Confirmar</button>
-            </div>
-        </form>
+        <div class="modal-footer">
+            <form #miFormulario="ngForm"  (ngSubmit)="onSubmit(miFormulario)">
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="modalUser" placeholder="Nombre Completo">
+                    <input type="email" class="form-control" [(ngModel)]="email" name="email" id="modalEmail" placeholder="Email">
+                    <input type="password" class="form-control" [(ngModel)]="contrasena" name="contrasena" id="modalPassword" placeholder="Contraseña">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </div>
