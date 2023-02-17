@@ -59,7 +59,7 @@ export class ViewUsersComponent implements OnInit {
         this.email = '';
         this.contrasena = '';
   
-        // Mostrar una alerta de SweetAlert indicando que se ha creado el usuario correctamente
+        // Mostramos alerta de SweetAlert indicando que se ha creado el usuario correctamente
         Swal.fire({
           title: 'Usuario creado',
           text: 'El usuario se ha creado correctamente.',

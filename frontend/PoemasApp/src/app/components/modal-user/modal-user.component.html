@@ -13,11 +13,16 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-footer">
             <form #miFormulario="ngForm"  (ngSubmit)="onSubmit(miFormulario)">
                 <div class="form-group">
+                    <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="modalUser" placeholder="Nombre Completo">
+                    <label for="email">Email</label>
                     <input type="email" class="form-control" [(ngModel)]="email" name="email" id="modalEmail" placeholder="Email">
+                    <label for="contrasena">Contraseña</label>
                     <input type="password" class="form-control" [(ngModel)]="contrasena" name="contrasena" id="modalPassword" placeholder="Contraseña">
+                    <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
                 </div>
             </form>
         </div>
