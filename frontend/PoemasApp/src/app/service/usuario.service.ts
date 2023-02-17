@@ -60,6 +60,17 @@ export class UsuarioService {
   buscarUsuarios(termino: string): Observable<any> {
     return this.httpClient.get(`${this.url}?nombre=${termino}`);
   }
+  //crear usuario
+  crearUsuario(nombre: string, email: string, contrasena: string): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    const body = { nombre, email, contrasena };
+    const requestOptions = { headers: headers };
+    return this.httpClient.post(this.url, body, requestOptions);
+  }
 }
 
 
