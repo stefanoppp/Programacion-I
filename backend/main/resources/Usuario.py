@@ -5,6 +5,7 @@ from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func
 from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
 from main.auth.decoradores import admin_required
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 #Recurso Usuario
@@ -35,14 +36,18 @@ class Usuario(Resource):
         token_id = get_jwt_identity()
         claims = get_jwt()
         if token_id == usuario.id or claims['admin']:
-            data = request.get_json().items()
-            for key, value in data:
+            data = request.get_json()
+            if 'contrasena' in data:
+                nueva_contrasena = data.pop('contrasena')
+                usuario.contrasena = generate_password_hash(nueva_contrasena)
+            for key, value in data.items():
                 setattr(usuario, key, value)
             db.session.add(usuario)
             db.session.commit()
-            return usuario.to_json() , 201
+            return usuario.to_json(), 201
         else:
-            return 'No tiene permisos',403
+            return 'No tiene permisos', 403
+
 
 
 #Recurso Usuarios
