@@ -71,20 +71,20 @@ class Calificaciones(Resource):
     
     #Insertar recurso
     @jwt_required()
-    def post(self):  ##agregar condicion de que un usuario pueda agregar otro poema si ha realizado 3 calificaciones
-            calificacion = CalificacionModel.from_json(request.get_json()) #traemos los valores del json
-            usuario_id = get_jwt_identity()
-            calificacion.usuarioId = usuario_id #Agrega la calificacion al dueno del token
-            poema = db.session.query(PoemaModel).get_or_404(calificacion.poemaId) ##traigo modelo poema para trabajar con sus atributos
-            if poema.usuarioId == usuario_id:      ## compruebo que sea el usuario logeado con el jwt
-                return 'No se puede calificar su propio poema'
-            else:
-                try:
-                    db.session.add(calificacion)
-                    db.session.commit() 
-                    result = sendmail([calificacion.poema.usuario.email],'Nueva calificacion','nueva_calificacion',calificacion = calificacion)        
-                except Exception as error:
-                    #Si hay error, vuelve atras toda la base de datos
-                    #db.session.rollback()
-                    return str(error), 409        
-                return calificacion.to_json(), 201
+    def post(self): 
+        calificacion = CalificacionModel.from_json(request.get_json())
+        usuario_id = get_jwt_identity()
+        calificacion.usuarioId = usuario_id
+        poema = db.session.query(PoemaModel).get_or_404(calificacion.poemaId) 
+        if poema.usuarioId == usuario_id: 
+            return 'No se puede calificar su propio poema'
+        existing_rating = db.session.query(CalificacionModel).filter_by(poemaId=calificacion.poemaId, usuarioId=usuario_id).first() #esta consulta se fija si ya existe una calificacion para el poema por el propio usuario, y si existe devuelve un error
+        if existing_rating:
+            return 'Ya has calificado este poema', 409
+        try:
+            db.session.add(calificacion)
+            db.session.commit() 
+            result = sendmail([calificacion.poema.usuario.email],'Nueva calificacion','nueva_calificacion',calificacion = calificacion)        
+        except Exception as error:
+            return str(error), 409        
+        return calificacion.to_json(), 201
