@@ -1,40 +1,26 @@
     <app-header></app-header>
 
     <!-------- codigo principal-------------->
-    <div class="card card-poema">
+    <div class="card card-poema" *ngIf="poema">
         <div class="card-body">
-            <h5 class="card-title">{{arrayPoema.titulo}}</h5>
-            <p class="card-text p-3">{{arrayPoema.contenido}}</p>
+            <h5 class="card-title">{{poema.titulo}}</h5>
+            <p class="card-text p-3">{{poema.contenido}}</p>
+            <button type="button" id="confirmar" class="btn btn-primary btn-poemas" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enviar Reseña</button>
         </div>
         <div class="card-footer card-footer-poemas">
-            <small class="text-muted">Creado por {{arrayPoema.usuario.nombre}}</small>
-            <small class="text-muted "> el día {{arrayPoema.fecha.substr(0,10)}} a las {{arrayPoema.fecha.substr(11,5)}} hr</small>
+            <small class="text-muted">Creado por {{poema.usuario?.nombre}}</small>
+            <small class="text-muted "> el día {{poema.fecha?.substr(0,10)}} a las {{poema.fecha?.substr(11,5)}} hr</small>
         </div>
     </div>
     <!-------- formulario-------------->
-    <div class="card-form">
-        <div class="card p-2">
-            <form>
-                <div class="form-group m-lg-2">
-                    <small id="emailHelp" class="form-text text-muted">Tu comentario será compartido con la
-                        comunidad.</small>
-                    <textarea maxlength="600" id="resena" placeholder="Escriba su comentario"></textarea>
-                    <i class="fa-solid fa-star" style="cursor: pointer;" onclick="resenaPoema(this)" id="1estrella"></i>
-                    <i class="fa-solid fa-star" style="cursor: pointer;" onclick="resenaPoema(this)" id="2estrella"></i>
-                    <i class="fa-solid fa-star" style="cursor: pointer;" onclick="resenaPoema(this)" id="3estrella"></i>
-                    <i class="fa-solid fa-star" style="cursor: pointer;" onclick="resenaPoema(this)" id="4estrella"></i>
-                    <i class="fa-solid fa-star" style="cursor: pointer;" onclick="resenaPoema(this)" id="5estrella"></i>
-                </div>
-                <button type="button" id="confirmar" class="btn btn-primary btn-poemas" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop" disabled>Enviar Reseña</button>
-            </form>
-        </div>
-    </div>
+
+    <app-modal-poemas [poemaId]="poema?.id"></app-modal-poemas>
+    
     <!-------footer--------------->
     <div style="position: relative; top:50px">
         <app-footer></app-footer>
     </div>
-    <!-- Modal -->
-    <app-modal-poemas></app-modal-poemas>
+    <!-- Modal -->                
+
     <!---------------------------->
 

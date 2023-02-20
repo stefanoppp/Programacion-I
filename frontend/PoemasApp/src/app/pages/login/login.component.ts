@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     }) 
   }
   login(dataLogin:any) {
-    console.log('Comprobando credenciales..');
+    console.log('Comprobando credenciales..')
     this.authService.login(dataLogin).subscribe({          //me conecto con el servicio 
                           
         next: (rta) => {
@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
           console.log('login exitoso!',rta.admin); //muestro el admin
           localStorage.setItem('token',rta.access_token);
           localStorage.setItem('admin',rta.admin);
+          localStorage.setItem('usuarioId',rta.id);
+
           Swal.fire({
               title: 'Login exitoso!',
               text:'Bienvenido a miPoema',

@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Paginado } from '../models/paginado.model';
+import { Poema } from '../models/poema.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class PoemaService {
   
   constructor(
   private httpClient: HttpClient,
-  private activatedRoute: ActivatedRoute
   ) { } 
   getPoemas() {
     return this.httpClient.get(this.url);
@@ -31,7 +30,7 @@ export class PoemaService {
       params = params.append('order_by', paginado.order_by);
     return this.httpClient.get(this.url, { params: params });
   }
-  getPoema(id: string){
+  getPoema(id: string): Observable<Poema> {
     return this.httpClient.get(this.url2+id);
   } 
 }
