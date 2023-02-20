@@ -22,8 +22,6 @@ function editUser()
     const userEmail = document.getElementById("userEmail")
     const modalUser = document.getElementById("modalUser")
     const modalEmail = document.getElementById("modalEmail")
-    const password = document.getElementById("modalPassword")
-    const password2 = document.getElementById("modalPassword2")
     modalUser.value = userName.innerText
     modalEmail.value = userEmail.innerText
   })
@@ -43,32 +41,27 @@ function resenaPoema(item)
   }
 
   const confirm = document.getElementById("confirmar");
-  const nameUser = document.getElementById("nombre");
   const review = document.getElementById("resena");
   const reviewModal = document.getElementById("resena-modal");
   const nameModal = document.getElementById("staticBackdropLabel");
   const stars = document.getElementById("calificacion");
   confirm.addEventListener("click", () => {
-    nameModal.innerText = nameUser.value + " quiere confirmar su reseña?";
+    nameModal.innerText = "Quiere confirmar su reseña?";
     reviewModal.innerText = review.value;
     stars.innerText = "Usted calificó con " + contador + " estrellas!";
-    document.getElementsByName("nombre")[0].value = nameUser.value;
-    document.getElementsByName("calificacion")[0].value = review.value;
-    document.getElementsByName("estrella")[0].value = contador;
+    document.getElementsByName("comentario")[0].value = review.value;
+    document.getElementsByName("valoracion")[0].value = contador;
   });
 
   setInterval(() => {
     let count = 0;
-    if (nameUser.value.length > 2) {
-      count++;
-    }
     if (review.value.length > 10) {
       count++;
     }
     if (contador > 0) {
       count++;
     }
-    if (count == 3) {
+    if (count == 2) {
       confirm.disabled = false;
     } else {
       confirm.disabled = true;
