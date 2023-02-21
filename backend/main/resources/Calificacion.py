@@ -77,7 +77,7 @@ class Calificaciones(Resource):
         calificacion.usuarioId = usuario_id
         poema = db.session.query(PoemaModel).get_or_404(calificacion.poemaId) 
         if poema.usuarioId == usuario_id: 
-            return 'No se puede calificar su propio poema'
+            return 'No se puede calificar su propio poema',400
         existing_rating = db.session.query(CalificacionModel).filter_by(poemaId=calificacion.poemaId, usuarioId=usuario_id).first() #esta consulta se fija si ya existe una calificacion para el poema por el propio usuario, y si existe devuelve un error
         if existing_rating:
             return 'Ya has calificado este poema', 409

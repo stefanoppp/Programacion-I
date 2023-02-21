@@ -47,10 +47,10 @@ input::placeholder{
 
 }
 .btn-poemas{
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
-    width: 30%;
-    margin-left: 35%;
+    width: 50%;
+    margin-left: 25%;
 }
 
 .modal-body-poema{
