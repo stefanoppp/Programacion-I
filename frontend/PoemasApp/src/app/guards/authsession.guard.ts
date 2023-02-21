@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {CanActivate,UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import {Router} from '@angular/router'
-//con el guardian vamos a comprobar si existe el token y si existe le voy a decir que es true. Si es false lo puedo rutear al home
+import { TokenService } from '../service/token.service';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthsessionGuard implements CanActivate {
   constructor(
+    private tokenService: TokenService,
     private router: Router
   ){}
+
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const token =localStorage.getItem('token');
-    if(!token){
-      this.router.navigate(['/'])
-      return false
-    }else{
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    this.tokenService.removeTokenIfExpired();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    } else {
       return true;
     }
-  }
-  
+  } 
 }
+

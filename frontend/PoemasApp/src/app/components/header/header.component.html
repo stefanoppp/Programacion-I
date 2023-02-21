@@ -14,7 +14,7 @@
         <li *ngIf="isToken" class="nav-item ">
           <a class="nav-link active navbar_pad" aria-current="page" (click)="cerrarSesion()" routerLink="/">Cerrar sesion</a>
         </li>
-        <li *ngIf="isAdmin"  class="nav-item ">
+        <li *ngIf="isAdmin && isToken"  class="nav-item ">
           <a class="nav-link active navbar_pad usuarios_estilo" aria-current="page" routerLink="/admin"><button type="button" class="btn btn-outline-secondary btn-sm">Usuarios</button></a>
         </li>
       </ul>
