@@ -8,7 +8,7 @@
             <button type="button" id="confirmar" class="btn btn-primary btn-poemas" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enviar Reseña</button>
         </div>
         <div class="card-footer card-footer-poemas">
-            <small class="text-muted">Creado por {{poema.usuario?.nombre}}</small>
+            <small class="text-muted">Creado por <span style="font-weight:bolder">{{poema.usuario?.nombre}}</span></small>
             <small class="text-muted "> el día {{poema.fecha?.substr(0,10)}} a las {{poema.fecha?.substr(11,5)}} hr</small>
         </div>
     </div>
@@ -17,9 +17,8 @@
     <app-modal-poemas [poemaId]="poema?.id"></app-modal-poemas>
     
     <!-------footer--------------->
-    <div style="position: relative; top:50px">
-        <app-footer></app-footer>
-    </div>
+    <app-footer></app-footer>
+   
     <!-- Modal -->                
 
     <!---------------------------->
