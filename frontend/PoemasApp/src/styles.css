@@ -8,7 +8,6 @@ body {
     background-image: url(./assets/img/flowers.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
     background-blend-mode: luminosity;
     font-family: Portoluce;
 }
@@ -24,6 +23,8 @@ textarea{
 .logo {
     width: 35px;
 }
+
+
 
 
 
