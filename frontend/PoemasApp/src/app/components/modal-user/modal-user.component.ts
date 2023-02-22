@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-user',
@@ -22,6 +23,13 @@ export class ModalComponent implements OnInit {
       this.nombre = miFormulario.value.nombre;
       this.email = miFormulario.value.email;
       this.contrasena = miFormulario.value.contrasena;
+      Swal.fire({
+        title: 'Edicion completada',
+        text: 'Has editado el perfil correctamente',
+        icon: 'success'
+      });
+      console.log('edicion creada exitosamente');
+      
     });
   }
 

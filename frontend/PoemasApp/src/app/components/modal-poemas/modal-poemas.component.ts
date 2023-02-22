@@ -30,10 +30,10 @@ export class ModalPoemasComponent implements OnInit {
     const usuarioId = parseInt(localStorage.getItem('usuarioId') || '0', 10); // id del usuario logeado
 
     if(this.comentario && this.valoracion && usuarioId && this.poemaId) {
-      console.log("Usuario ID: ", usuarioId);
+      /*console.log("Usuario ID: ", usuarioId);
       console.log("Poema ID: ", this.poemaId);
       console.log("Valoracion: ", this.valoracion);
-      console.log("Comentario: ", this.comentario);
+      console.log("Comentario: ", this.comentario);*/
       this.calificacionService.enviarCalificacion(usuarioId, this.poemaId, this.valoracion, this.comentario)
       .subscribe(
         respuesta => {
