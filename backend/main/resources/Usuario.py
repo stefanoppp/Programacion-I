@@ -96,6 +96,10 @@ class Usuarios(Resource):
     @admin_required
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json()) #traemos los valores del json
+        data = request.get_json()
+        if 'contrasena' in data:
+            nueva_contrasena = data.pop('contrasena')
+            usuario.contrasena = generate_password_hash(nueva_contrasena)
         db.session.add(usuario)
         db.session.commit()
         return usuario.to_json(), 201
