@@ -11,20 +11,27 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <h4 id="calificacion"></h4>
         </div>
         <div class="modal-footer">
-            <form #miFormulario="ngForm"  (ngSubmit)="onSubmit(miFormulario)">
+            <form #miFormulario="ngForm" (ngSubmit)="onSubmit(miFormulario)">
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="modalUser" placeholder="Nombre Completo">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" [(ngModel)]="email" name="email" id="modalEmail" placeholder="Email">
-                    <label for="contrasena">Contraseña</label>
-                    <input type="password" class="form-control" [(ngModel)]="contrasena" name="contrasena" id="modalPassword" placeholder="Contraseña">
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="modalUser" placeholder="Nombre Completo" required (ngModelChange)="onChangeNombre()">
+                  <div *ngIf="nombreError" class="alert alert-danger">{{nombreErrorMsg}}</div>
+                
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" [(ngModel)]="email" name="email" id="modalEmail" placeholder="Email" required (ngModelChange)="onChangeEmail()">
+                  <div *ngIf="emailError" class="alert alert-danger">{{emailErrorMsg}}</div>
+                
+                  <label for="contrasena">Contraseña</label>
+                  <input type="password" class="form-control" [(ngModel)]="contrasena" name="contrasena" id="modalPassword" placeholder="Contraseña" required (ngModelChange)="onChangeContrasena()">
+                  <div *ngIf="contrasenaError" class="alert alert-danger">{{contrasenaErrorMsg}}</div>
+                
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetForm(miFormulario)">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Confirmar</button>
-                    </div>
+                  </div>
                 </div>
-            </form>
+            </form>  
         </div>
     </div>
 </div>
