@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Paginado } from '../models/paginado.model';
@@ -15,13 +15,13 @@ export class PoemaService {
   constructor(
   private httpClient: HttpClient,
   ) { } 
+  
   getPoemas() {
     return this.httpClient.get(this.url);
   }
-  getPoemasPaginado(paginado:Paginado): Observable<any> {
 
+  getPoemasPaginado(paginado:Paginado): Observable<any> {
     let params = new HttpParams();
-    
     if(paginado.page)
       params = params.append('page', paginado.page);
     if(paginado.per_page)
@@ -30,7 +30,22 @@ export class PoemaService {
       params = params.append('order_by', paginado.order_by);
     return this.httpClient.get(this.url, { params: params });
   }
+
+  /*seleccionar poema en particular*/
   getPoema(id: string): Observable<Poema> {
     return this.httpClient.get(this.url2+id);
-  } 
+  }
+  
+  
+  /*crear poema */
+  crearPoema(usuarioId:number,titulo: string, contenido: string): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    const body = { usuarioId,titulo, contenido};
+    const requestOptions = { headers: headers };
+    return this.httpClient.post(this.url, body, requestOptions);
+  }
 }

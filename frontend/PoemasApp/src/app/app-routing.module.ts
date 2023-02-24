@@ -7,11 +7,13 @@ import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin
 import { DashboardUserComponent } from './pages/dashboard-user/dashboard-user.component'
 import { AuthsessionGuard } from './guards/authsession.guard';
 import { AdminsessionGuard } from './guards/adminsession.guard';
+import { CrearPoemaComponent } from './pages/crear-poema/crear-poema.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'poemas',component:PoemasComponent},
+  {path:'crear-poema',component:CrearPoemaComponent,canActivate:[AuthsessionGuard]},
   {path:'admin',component:DashboardAdminComponent,canActivate:[AdminsessionGuard]},
   {path:'user',component:DashboardUserComponent,canActivate:[AdminsessionGuard]},
   {path: 'user/:id', component:DashboardUserComponent,canActivate:[AdminsessionGuard]},

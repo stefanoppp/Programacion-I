@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { CalificacionService } from 'src/app/service/calificacion.service';
 import Swal from 'sweetalert2';
 
@@ -17,23 +16,33 @@ export class ModalPoemasComponent implements OnInit {
   comentario: string | undefined;
   valoracion: number | undefined;
 
+  comentarioRegex = /^.{30,}$/;
+
+  comentarioErrorMsg = '';
+  
+  comentarioError = false;
+ 
+
   constructor(
     private calificacionService:CalificacionService,
-    private route:ActivatedRoute,
-    private formBuilder: FormBuilder
+  
+  
   ) { }
 
   ngOnInit(): void {
   }
 
-  enviarCalificacion() {
+  enviarCalificacion(miFormulario:NgForm) {
     const usuarioId = parseInt(localStorage.getItem('usuarioId') || '0', 10); // id del usuario logeado
 
-    if(this.comentario && this.valoracion && usuarioId && this.poemaId) {
-      /*console.log("Usuario ID: ", usuarioId);
-      console.log("Poema ID: ", this.poemaId);
-      console.log("Valoracion: ", this.valoracion);
-      console.log("Comentario: ", this.comentario);*/
+
+    if (!miFormulario.value.comentario|| !this.comentarioRegex.test(miFormulario.value.comentario)) {
+      this.comentarioError = true;
+      this.comentarioErrorMsg = 'Tu comentario debe tener un minimo de 30 caracteres.';
+      return;
+    }
+
+    if(this.poemaId && this.comentario && this.valoracion && usuarioId) {
       this.calificacionService.enviarCalificacion(usuarioId, this.poemaId, this.valoracion, this.comentario)
       .subscribe(
         respuesta => {
@@ -41,6 +50,11 @@ export class ModalPoemasComponent implements OnInit {
             title: 'Calificacion enviada',
             text: 'Su calificacion se ha enviado correctamente',
             icon: 'success'
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
           });
           console.log('Calificación creada exitosamente');
           // Agrega aquí cualquier código que quieras ejecutar después de crear la calificación exitosamente
@@ -63,7 +77,7 @@ export class ModalPoemasComponent implements OnInit {
         }
         }
       );
-    } else {
+    }else{
       Swal.fire({
         title: 'Campos obligatorios',
         text: 'Por favor, complete todos los campos para poder calificar.',
@@ -76,6 +90,23 @@ export class ModalPoemasComponent implements OnInit {
   calificar(valoracion: number): void {
     this.valoracion = valoracion;
   }
+  resetErrors() {
+    this.comentarioError = false;
+  
+  }
+  resetFormulario(miFormulario: NgForm) {
+    miFormulario.resetForm();
+    this.resetErrors();
+  }
+  onChangeComentario() {
+    this.resetErrors();
+  }
+  resetForm(miFormulario: NgForm) {
+    miFormulario.resetForm();
+    this.comentario = '';
+    this.resetErrors();
+  }
+  
 
 }
 

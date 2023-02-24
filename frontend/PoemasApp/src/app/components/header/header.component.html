@@ -12,14 +12,17 @@
           <a class="nav-link active navbar_pad" aria-current="page" routerLink="/login">Login</a>
         </li>
         <li *ngIf="isToken" class="nav-item ">
-          <a class="nav-link active navbar_pad" aria-current="page" (click)="cerrarSesion()" routerLink="/">Cerrar sesion</a>
+          <a class="nav-link active navbar_pad btn-cerrar" aria-current="page" (click)="cerrarSesion()" routerLink="/">Cerrar sesion</a>
         </li>
         <li *ngIf="isAdmin && isToken"  class="nav-item ">
           <a class="nav-link active navbar_pad usuarios_estilo" aria-current="page" routerLink="/admin"><button type="button" class="btn btn-outline-secondary btn-sm">Usuarios</button></a>
         </li>
+        <li *ngIf="isToken"  class="nav-item ">
+          <a class="nav-link active navbar_pad usuarios_estilo" aria-current="page" routerLink="/crear-poema"><button type="button" class="btn btn-outline-secondary btn-sm">Crear Poema</button></a>
+        </li>
       </ul>
       <form class="d-flex navbar_pad" role="search" (ngSubmit)="buscarUsuarios(termino.value)">
-        <input class="form-control me-2 search-input " type="search" placeholder="Buscar" aria-label="Search" #termino>
+        <input class="form-control me-2 search-input" type="search" placeholder="Buscar" aria-label="Search" #termino>
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
       </form>
     </div>

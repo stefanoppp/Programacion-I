@@ -23,6 +23,7 @@ export class ModalComponent implements OnInit {
   nombreErrorMsg = '';
   emailErrorMsg = '';
   contrasenaErrorMsg = '';
+  
   constructor(private usuarioService: UsuarioService, private route: ActivatedRoute) { }
   
   nombreError = false;

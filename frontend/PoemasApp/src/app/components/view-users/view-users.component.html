@@ -50,22 +50,25 @@
             </div>
             <div class="modal-body">
                 <!-- formulario para dar de alta al poeta -->
-                <form>
+                <form #miFormulario="ngForm" (ngSubmit)="crearUsuario(miFormulario)">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" placeholder="Nombre del poeta">
+                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" placeholder="Nombre del poeta" required (ngModelChange)="onChangeNombre()">
+                        <div *ngIf="nombreError" class="alert alert-danger">{{nombreErrorMsg}}</div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email" placeholder="Email del poeta">
+                        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email" placeholder="Email del poeta" required (ngModelChange)="onChangeEmail()">
+                        <div *ngIf="emailError" class="alert alert-danger">{{emailErrorMsg}}</div>
                     </div>
                     <div class="form-group">
                         <label for="contrasena">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" [(ngModel)]="contrasena" placeholder="Contraseña temporal del poeta">
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" [(ngModel)]="contrasena" placeholder="Contraseña temporal del poeta" required (ngModelChange)="onChangeContrasena()">
+                        <div *ngIf="contrasenaError" class="alert alert-danger">{{contrasenaErrorMsg}}</div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary" (click)="crearUsuario()">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetForm(miFormulario)">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>

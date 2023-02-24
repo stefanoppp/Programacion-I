@@ -21,6 +21,7 @@ import { HeaderNoSearchComponent } from './components/header-no-search/header-no
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {FormsModule} from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrearPoemaComponent } from './pages/crear-poema/crear-poema.component';
 
 
 
@@ -42,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ViewUsersComponent,
     HeaderNoSearchComponent,
+    CrearPoemaComponent,
     
    ],
   imports: [

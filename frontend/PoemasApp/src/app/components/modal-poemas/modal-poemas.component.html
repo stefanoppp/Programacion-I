@@ -9,23 +9,31 @@
             <div class="modal-body modal-body-poema">
                 <div class="card-form">
                     <div class="card p-2">
+                        <form #miFormulario="ngForm" (ngSubmit)="enviarCalificacion(miFormulario)">
                             <div class="form-group m-lg-2">
                                 <small id="emailHelp" class="form-text text-muted">Tu comentario será compartido con la
                                     comunidad.</small>
-                                <textarea [(ngModel)]="comentario" maxlength="600" id="comentario" placeholder="Escriba su comentario"></textarea>
+                                <textarea [(ngModel)]="comentario" name="comentario" id="comentario"
+                                    placeholder="Escriba su comentario" required maxlength="600"
+                                    (ngModelChange)="onChangeComentario()" ngModel></textarea>
+                                <div *ngIf="comentarioError" class="alert alert-danger">{{comentarioErrorMsg}}</div>
                                 <i class="fa-solid fa-star" style="cursor: pointer;" (click)="calificar(1)"></i>
                                 <i class="fa-solid fa-star" style="cursor: pointer;" (click)="calificar(2)"></i>
                                 <i class="fa-solid fa-star" style="cursor: pointer;" (click)="calificar(3)"></i>
                                 <i class="fa-solid fa-star" style="cursor: pointer;" (click)="calificar(4)"></i>
                                 <i class="fa-solid fa-star" style="cursor: pointer;" (click)="calificar(5)"></i>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary" (click)="enviarCalificacion()">Confirmar</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="resetForm(miFormulario)">Cerrar</button>
+                <button type="submit" class="btn btn-primary"
+                    (click)="enviarCalificacion(miFormulario)">Confirmar</button>
+            </div>
+
         </div>
     </div>
 </div>
