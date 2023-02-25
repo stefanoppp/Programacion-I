@@ -10,7 +10,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardUserComponent } from './pages/dashboard-user/dashboard-user.component';
 import { DashboardAdminComponent } from './pages/dashboard-admin/dashboard-admin.component';
 import { PoemasComponent } from './pages/poemas/poemas.component';
-import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ModalComponent } from './components/modal-user/modal-user.component';
 import { PageNavigHomeComponent } from './components/page-navig-home/page-navig-home.component';
 import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.component';
@@ -35,7 +34,6 @@ import { CrearPoemaComponent } from './pages/crear-poema/crear-poema.component';
     DashboardUserComponent,
     DashboardAdminComponent,
     PoemasComponent,
-    DropdownComponent,
     ModalComponent,
     PageNavigHomeComponent,
     ModalPoemasComponent,

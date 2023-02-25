@@ -37,6 +37,49 @@ cite{
     font-size: 11px;
     padding-left: 8px;
 }
+.search-form {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .search-form .form-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-form .form-row > div {
+    margin-right: 10px;
+  }
+  
+  .search-form .form-row > div:last-child {
+    margin-right: 0;
+  }
+  
+  .search-form input[type="text"],
+  .search-form select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .search-form button[type="submit"] {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 40%;
+    width: 100px;
+  }
+  
+  .search-form button[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+  
 
 
 @media(max-width:1050px) {
@@ -50,3 +93,18 @@ cite{
     background-color: red;
     
 }
+@media (max-width: 768px) {
+    .search-form .form-row {
+      flex-wrap: wrap;
+    }
+    
+    .search-form .form-row > div {
+      flex: 1 1 100%;
+      margin-bottom: 10px;
+    }
+    
+    .search-form .form-row > div:last-child {
+      margin-bottom: 0;
+    }
+  }
+  

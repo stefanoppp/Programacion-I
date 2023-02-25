@@ -48,4 +48,19 @@ export class PoemaService {
     const requestOptions = { headers: headers };
     return this.httpClient.post(this.url, body, requestOptions);
   }
+
+  buscarPoemas(titulo: string, paginado:Paginado): Observable<any> {
+    let params = new HttpParams();
+    if(paginado.page)
+      params = params.append('page', paginado.page);
+    if(paginado.per_page)
+      params = params.append('per_page', paginado.per_page);
+    if(paginado.order_by)
+      params = params.append('order_by', paginado.order_by);
+    if(titulo)
+      params = params.append('titulo', titulo);
+    return this.httpClient.get(`${this.url}`, { params: params });
+  }
+  
+  
 }

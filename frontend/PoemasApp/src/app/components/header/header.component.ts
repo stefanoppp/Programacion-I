@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth1Service } from 'src/app/service/auth1.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { PoemaService } from 'src/app/service/poema.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService:Auth1Service,
-    private usuarioService: UsuarioService
+    private poemaService: PoemaService
   ) { }
 
   ngOnInit(): void {
@@ -27,11 +27,6 @@ export class HeaderComponent implements OnInit {
   get isAdmin(){
     return localStorage.getItem("admin") ==='true'?true:false || undefined
   }
-  buscarUsuarios(termino:string){
-     this.usuarioService.buscarUsuarios(termino).subscribe((data:any) => {
-      console.log(data);
-      this.usuarios = data.usuarios // Asignamos los usuarios recibidos desde el servicio a la propiedad 'usuarios'
-    });
-  }
+
 
 }

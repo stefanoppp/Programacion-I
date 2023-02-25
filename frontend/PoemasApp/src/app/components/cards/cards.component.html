@@ -1,3 +1,27 @@
+<form (ngSubmit)="buscarPoemas()" #form="ngForm" class="search-form">
+  <div class="form-row">
+    <div class="col-md-5 mb-3">
+      <input type="text" class="form-control" name="titulo" [(ngModel)]="titulo" placeholder="Buscar por título">
+    </div>
+    <div class="col-md-4 mb-3">
+      <select class="form-control" name="order_by" [(ngModel)]="orderBy">
+        <option value="">Ordenar por...</option>
+        <option value="titulo[asc]">Título (A-Z)</option>
+        <option value="titulo[desc]">Título (Z-A)</option>
+        <option value="calificaciones[asc]">Calificaciones (menor a mayor)</option>
+        <option value="calificaciones[desc]">Calificaciones (mayor a menor)</option>
+        <option value="fecha[asc]">Fecha (ascendente)</option>
+        <option value="fecha[desc]">Fecha (descendente)</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <button type="submit" class="btn btn-primary btn-block">Buscar</button>
+    </div>
+  </div>
+</form>
+
+
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col"*ngFor="let poe of arrayPoemas">
     <div class="card card-home">

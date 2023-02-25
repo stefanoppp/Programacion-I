@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request,jsonify
 from .. import db
 from main.models import PoemaModel,UsuarioModel,CalificacionModel
-from sqlalchemy import func
+from sqlalchemy import desc, func
 from flask_jwt_extended import jwt_required,get_jwt_identity,get_jwt
 from pprint import pprint
 
@@ -52,11 +52,11 @@ class Poemas(Resource):
         page= request.args.get('page',default=1,type=int)
         per_page= request.args.get('per_page',default=10,type=int)
         order_by= request.args.get('order_by',type=str)
+        titulo= request.args.get('titulo',type=str)
         print(page,per_page,order_by)
         #usuario_id = get_jwt_identity() #puede q el valor este lleno o no, por lo que hay q hacer un if
         poemas = db.session.query(PoemaModel)
         #usuarios = db.session.query(UsuarioModel)
-        calificaciones = db.session.query(CalificacionModel)
             # if key == "titulo":
             #     poemas =poemas.filter(PoemaModel.titulo.like("%"+value+"%")) #cualquier caracter antes y cualquier caracter despues del value, aunque sepa el nombre parcialmente nos va a traer lo que busquemos
             # if key == "nombre":
@@ -69,19 +69,35 @@ class Poemas(Resource):
             #     poemas = calificaciones.filter(CalificacionModel.valoracion == value)
             # if key == "fecha":
             #     poemas = poemas.filtessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssr(PoemaModel.fecha == value)
-        if order_by:    
-            if order_by == "titulo[desc]": #ordena los titulos de la z-a
-                poemas = poemas.order_by(PoemaModel.titulo.desc())
-            if order_by == "titulo": #ordena titulos de la a-z
+        order_by = request.args.get('order_by')
+        if titulo:
+            poemas = poemas.filter(PoemaModel.titulo.like("%"+titulo+"%")) #cualquier caracter antes y cualquier caracter despues del value, aunque sepa el nombre parcialmente nos va a traer lo que busquemos
+
+        if order_by:
+            if order_by == "titulo[asc]":
                 poemas = poemas.order_by(PoemaModel.titulo)
+            elif order_by == "titulo[desc]":
+                poemas = poemas.order_by(PoemaModel.titulo.desc())
             if order_by == "calificaciones[desc]":
-                poemas = calificaciones.order_by(CalificacionModel.valoracion.desc())
-            if order_by == "calificaciones":
-                poemas = calificaciones.order_by(CalificacionModel.valoracion)
-            if order_by == "fecha[desc]":
-                poemas = poemas.order_by(PoemaModel.fecha.desc())
-            if order_by == "fecha":
+                poemas = (
+                    PoemaModel.query
+                    .outerjoin(CalificacionModel)
+                    .group_by(PoemaModel.id)
+                    .order_by(desc(func.avg(CalificacionModel.valoracion)))
+                )
+
+            if order_by == "calificaciones[asc]":
+                poemas = (
+                    PoemaModel.query
+                    .outerjoin(CalificacionModel)
+                    .group_by(PoemaModel.id)
+                    .order_by(func.avg(CalificacionModel.valoracion))
+                )
+            elif order_by == "fecha[asc]":
                 poemas = poemas.order_by(PoemaModel.fecha)
+            elif order_by == "fecha[desc]":
+                poemas = poemas.order_by(PoemaModel.fecha.desc())
+
 
         print(poemas)
         poemas=poemas.paginate(page,per_page,True) # era 10 por defecto
