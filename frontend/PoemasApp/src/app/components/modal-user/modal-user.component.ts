@@ -18,7 +18,7 @@ export class ModalComponent implements OnInit {
 
   nombreRegex = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras y espacios en blanco en el nombre
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Expresión regular para validar el formato de correo electrónico
-  contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; // Expresión regular para validar una contraseña segura
+  contrasenaRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*\W)(?=.*[a-z])[^\s]{8,}$/; // Expresión regular para validar una contraseña segura
 
   nombreErrorMsg = '';
   emailErrorMsg = '';
@@ -75,7 +75,17 @@ export class ModalComponent implements OnInit {
         }
       });
       
-    });
+    },error=>{
+      if (error.status === 400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Email duplicado',
+          text: 'Error al actualizar el usuario',
+          confirmButtonText: 'Aceptar'
+        })
+      }
+    })
+    
   }
 
   resetErrors() {

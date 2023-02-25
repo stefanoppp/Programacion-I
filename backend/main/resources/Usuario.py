@@ -1,3 +1,4 @@
+from sqlite3 import IntegrityError
 from flask_restful import Resource
 from flask import request,jsonify
 from .. import db
@@ -37,6 +38,9 @@ class Usuario(Resource):
         claims = get_jwt()
         if token_id == usuario.id or claims['admin']:
             data = request.get_json()
+            correo_existente = db.session.query(UsuarioModel).filter_by(email=data.get('email')).first()
+            if correo_existente and correo_existente.id != usuario.id:
+                return {'error': 'El correo electrónico ya está en uso por otro usuario'}, 400
             if 'contrasena' in data:
                 nueva_contrasena = data.pop('contrasena')
                 usuario.contrasena = generate_password_hash(nueva_contrasena)
@@ -93,15 +97,18 @@ class Usuarios(Resource):
 
     
     #Insertar recurso
-    @admin_required
     def post(self):
-        usuario = UsuarioModel.from_json(request.get_json()) #traemos los valores del json
         data = request.get_json()
+        usuario = UsuarioModel.from_json(data)
         if 'contrasena' in data:
             nueva_contrasena = data.pop('contrasena')
             usuario.contrasena = generate_password_hash(nueva_contrasena)
+        if UsuarioModel.query.filter_by(email=usuario.email).first() is not None:
+            return {'mensaje': 'El correo electrónico ya está en uso'}, 400
         db.session.add(usuario)
         db.session.commit()
         return usuario.to_json(), 201
+    
+    
 
-       
+        

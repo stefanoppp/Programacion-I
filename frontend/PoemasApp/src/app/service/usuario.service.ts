@@ -71,6 +71,17 @@ export class UsuarioService {
     const requestOptions = { headers: headers };
     return this.httpClient.post(this.url, body, requestOptions);
   }
+
+  registrarUsuario(nombre: string, email: string, contrasena: string): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    const body = { nombre, email, contrasena };
+    const requestOptions = { headers: headers };
+    return this.httpClient.post(this.url, body, requestOptions);
+  }
 }
 
 

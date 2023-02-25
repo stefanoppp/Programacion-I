@@ -41,6 +41,7 @@ export class Auth1Service {
           localStorage.removeItem('token')
           localStorage.removeItem('admin')
           localStorage.removeItem('usuarioId')
+          localStorage.removeItem('aprobado')
           this.router.navigate(['/'])
         })
       }

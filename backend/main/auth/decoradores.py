@@ -31,6 +31,7 @@ def add_claims_to_access_token(usuario):
         'admin': usuario.admin,
         'nombre':usuario.nombre,
         'id': usuario.id,
-        'email': usuario.email
+        'email': usuario.email,
+        'aprobado': usuario.aprobado
     }
     return claims

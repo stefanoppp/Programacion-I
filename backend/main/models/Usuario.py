@@ -4,9 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False , unique=True)
     contrasena = db.Column(db.String(100), nullable=False)
     admin = db.Column(db.Boolean,default=False, nullable=False)
+    aprobado = db.Column(db.Boolean,default=False, nullable=False) # Nuevo campo para indicar si el usuario está aprobado o no
+
     poemas = db.relationship('Poema', back_populates = "usuario", cascade = 'all, delete-orphan')
     calificaciones = db.relationship('Calificacion', back_populates = "usuario", cascade = 'all, delete-orphan')
     
@@ -31,6 +33,7 @@ class Usuario(db.Model):
             'nombre': str(self.nombre),
             'email': str(self.email),
             'admin': str(self.admin),
+            'aprobado': str(self.aprobado),
             'poemas_cant':len(poemas),
             'poemas': poemas,
             'calificaciones':calificaciones,
@@ -43,6 +46,7 @@ class Usuario(db.Model):
             'id': self.id,
             'nombre': str(self.nombre),
             'email': str(self.email),
+            'aprobado': str(self.aprobado),
             'poemas_cant':len(self.poemas),
             'calificaciones_cant':len(self.calificaciones)
         }
@@ -56,10 +60,16 @@ class Usuario(db.Model):
         email = usuario_json.get('email')
         contrasena = usuario_json.get('contrasena')
         admin = usuario_json.get('admin')
+        aprobado = usuario_json.get('aprobado')
         
         return Usuario(id = id,
                     nombre = nombre,
                     email = email,
                     contrasena = contrasena,
-                    admin = admin
+                    admin = admin,
+                    aprobado = aprobado
                     )
+    @property
+    def pendiente_aprobacion(self):
+        return not self.aprobado and not self.admin
+    

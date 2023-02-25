@@ -21,6 +21,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {FormsModule} from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearPoemaComponent } from './pages/crear-poema/crear-poema.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 
 
@@ -42,6 +43,7 @@ import { CrearPoemaComponent } from './pages/crear-poema/crear-poema.component';
     ViewUsersComponent,
     HeaderNoSearchComponent,
     CrearPoemaComponent,
+    RegistroComponent,
     
    ],
   imports: [

@@ -22,7 +22,8 @@ def login():
             'nombre': usuario.nombre,
             'email': usuario.email,
             'access_token': access_token,
-            'admin': usuario.admin
+            'admin': usuario.admin,
+            'aprobado': usuario.aprobado
         }
 
         return data, 200

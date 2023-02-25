@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token',rta.access_token);
           localStorage.setItem('admin',rta.admin);
           localStorage.setItem('usuarioId',rta.id);
+          localStorage.setItem('aprobado',rta.aprobado);
 
           Swal.fire({
               title: 'Login exitoso!',
@@ -54,6 +55,8 @@ export class LoginComponent implements OnInit {
           console.log('error',error);
           localStorage.removeItem('token');
           localStorage.removeItem('admin');
+          localStorage.removeItem('usuarioId');
+          localStorage.removeItem('aprobado');
           this.router.navigate(['/login'])
 
       }, complete: () =>{

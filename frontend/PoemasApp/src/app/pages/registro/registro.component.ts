@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from './../../service/usuario.service';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
-  selector: 'app-view-users',
-  templateUrl: './view-users.component.html',
-  styleUrls: ['./view-users.component.css']
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
 })
-export class ViewUsersComponent implements OnInit {
-
-  arrayUsuarios: any[] = []; //guardo los datos del array original y el del buscador
+export class RegistroComponent implements OnInit {
 
   nombre: string = '';
   email: string = '';
@@ -20,7 +19,7 @@ export class ViewUsersComponent implements OnInit {
   nombreRegex = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras y espacios en blanco en el nombre
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Expresión regular para validar el formato de correo electrónico
   contrasenaRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*\W)(?=.*[a-z])[^\s]{8,}$/; // Expresión regular para validar una contraseña segura
-
+  
   nombreErrorMsg = '';
   emailErrorMsg = '';
   contrasenaErrorMsg = '';
@@ -29,38 +28,12 @@ export class ViewUsersComponent implements OnInit {
   emailError = false;
   contrasenaError = false;
 
-
-  constructor(
-    private postUsuario: UsuarioService,
-    private router: Router,
-    private usuarioService: UsuarioService
-  ) { }
-
+  constructor(private usuarioService: UsuarioService, private router:Router) { }
 
   ngOnInit(): void {
+  }
 
-    this.postUsuario.getUsuarios().subscribe((data: any) => {
-      console.log('JSON data:', data.usuarios);
-      this.arrayUsuarios = data.usuarios
-    })
-
-  }
-  deleteUsuario(id: number) {
-    if (confirm("¿Está seguro que desea eliminar este usuario?")) {
-      this.postUsuario.deleteUsuario(id).subscribe(() => {
-        // Eliminación exitosa, actualiza el array de usuarios
-        this.arrayUsuarios = this.arrayUsuarios.filter(u => u.id !== id);
-        this.router.navigate(['/admin']) //me redirige a la vista del admin
-      });
-    }
-  }
-  buscarUsuarios(termino: string) {
-    this.usuarioService.buscarUsuarios(termino).subscribe((data: any) => {
-      console.log(data);
-      this.arrayUsuarios = data.usuarios // Asignamos los usuarios recibidos desde el servicio a la propiedad 'usuarios'
-    });
-  }
-  crearUsuario(miFormulario: NgForm) {
+  registrarUsuario(miFormulario: NgForm) {
     // Validación del nombre
     if (!miFormulario.value.nombre || !this.nombreRegex.test(miFormulario.value.nombre)) {
       this.nombreError = true;
@@ -84,9 +57,8 @@ export class ViewUsersComponent implements OnInit {
 
 
 
-    this.usuarioService.crearUsuario(this.nombre, this.email, this.contrasena).subscribe((res: any) => {
+    this.usuarioService.registrarUsuario(this.nombre, this.email, this.contrasena).subscribe((res: any) => {
       // Agregar el usuario recién creado al array de usuarios
-      this.arrayUsuarios.push(res.usuario);
       this.nombre = '';
       this.email = '';
       this.contrasena = '';
@@ -99,9 +71,7 @@ export class ViewUsersComponent implements OnInit {
       })
       .then((result) => {
         // Recargar la página si el usuario da click en el botón de aceptar
-        if (result.isConfirmed) {
-          location.reload();
-        }
+        this.router.navigate(['/login'])
       });
     }, error=>{
       if (error.status === 400) {
@@ -120,10 +90,7 @@ export class ViewUsersComponent implements OnInit {
     this.emailError = false;
     this.contrasenaError = false;
   }
-  resetFormulario(miFormulario: NgForm) {
-    miFormulario.resetForm();
-    this.resetErrors();
-  }
+ 
   onChangeNombre() {
     this.resetErrors();
   }
@@ -136,12 +103,4 @@ export class ViewUsersComponent implements OnInit {
     this.resetErrors();
   }
 
-  /*reseteo los valores del formulario cuando le doy al boton cerrar*/
-  resetForm(miFormulario: NgForm) {
-    miFormulario.resetForm();
-    this.nombre = '';
-    this.email = '';
-    this.contrasena = '';
-    this.resetErrors();
-  }
 }

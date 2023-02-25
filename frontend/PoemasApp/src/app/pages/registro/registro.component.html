@@ -1,0 +1,32 @@
+<app-header-no-search></app-header-no-search>
+<div>
+    <div class="container" style="height: 500px;">
+        <div class="wrapper">
+            <div class="title"><span>Bienvenido!</span></div>
+            <form #miFormulario="ngForm" (ngSubmit)="registrarUsuario(miFormulario)">
+                <div class="row">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Nombre" name="nombre" [(ngModel)]="nombre" required (ngModelChange)="onChangeNombre()">
+                </div>
+                <div *ngIf="nombreError" class="alert alert-danger">{{nombreErrorMsg}}</div>
+                
+                <div class="row">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Email" name="email" [(ngModel)]="email" (ngModelChange)="onChangeEmail()" required>
+                </div>
+                <div *ngIf="emailError" class="alert alert-danger">{{emailErrorMsg}}</div>
+                
+                <div class="row">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Contraseña" name="contrasena" [(ngModel)]="contrasena" (ngModelChange)="onChangeContrasena()" required>
+                </div>
+                <div *ngIf="contrasenaError" class="alert alert-danger">{{contrasenaErrorMsg}}</div>
+
+                <div class="row button">
+                    <input type="submit" value="Registrate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
