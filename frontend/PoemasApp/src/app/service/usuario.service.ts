@@ -82,6 +82,16 @@ export class UsuarioService {
     const requestOptions = { headers: headers };
     return this.httpClient.post(this.url, body, requestOptions);
   }
+  updateEstadoAprobado(id: number, aprobado:boolean){
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    const body = { aprobado};
+    const requestOptions = { headers: headers };
+    return this.httpClient.put(this.url2+id,body,requestOptions);
+  }
 }
 
 

@@ -15,6 +15,7 @@
             <th scope="col" class="col-normal">Email</th>
             <th scope="col" class="col-chica">Cantidad Poemas</th>
             <th scope="col" class="col-chica">Cantidad Calificaciones</th>
+            <th scope="col" class="col-chica">Aprobado</th>
             <th scope="col" class="col-iconos"></th>
         </thead>
         <!--ng for para recorrer los arreglos de usuario-->
@@ -26,12 +27,11 @@
                 <td>{{usu.email}}</td>
                 <td>{{usu.poemas_cant}}</td>
                 <td>{{usu.calificaciones_cant}}</td>
-
+                <td>
+                    <button class="my-button" (click)="updateEstadoAprobado(usu.id)">{{usu.aprobado}}</button>
+                </td>
                 <!--en el boton de edit, redirige a un usuario en particular-->
-                <td><a><span class="material-symbols-outlined cursor" routerLink="/user/{{usu.id}}">edit</span></a><a
-                        href="#" class="separacion"><span class="material-symbols-outlined cursor"
-                            (click)="deleteUsuario(usu.id)">delete</span></a></td>
-
+                <td><a><span class="material-symbols-outlined cursor" routerLink="/user/{{usu.id}}">edit</span></a><a href="#" class="separacion"><span class="material-symbols-outlined cursor" (click)="deleteUsuario(usu.id)">delete</span></a></td>
             </tr>
         </tbody>
     </table>

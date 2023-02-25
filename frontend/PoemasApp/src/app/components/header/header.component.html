@@ -17,7 +17,7 @@
         <li *ngIf="isAdmin && isToken"  class="nav-item ">
           <a class="nav-link active navbar_pad usuarios_estilo" aria-current="page" routerLink="/admin"><button type="button" class="btn btn-outline-secondary btn-sm">Usuarios</button></a>
         </li>
-        <li *ngIf="isToken"  class="nav-item ">
+        <li *ngIf="isToken && aprobado"  class="nav-item ">
           <a class="nav-link active navbar_pad usuarios_estilo" aria-current="page" routerLink="/crear-poema"><button type="button" class="btn btn-outline-secondary btn-sm">Crear Poema</button></a>
         </li>
       </ul>

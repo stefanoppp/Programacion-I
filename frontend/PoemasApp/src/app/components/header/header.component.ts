@@ -28,5 +28,9 @@ export class HeaderComponent implements OnInit {
     return localStorage.getItem("admin") ==='true'?true:false || undefined
   }
 
+  get aprobado(){
+    return localStorage.getItem("aprobado") ==='true'?true:false || undefined
+  }
+
 
 }

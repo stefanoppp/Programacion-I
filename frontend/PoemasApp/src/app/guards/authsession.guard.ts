@@ -17,7 +17,8 @@ export class AuthsessionGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.tokenService.removeTokenIfExpired();
     const token = localStorage.getItem('token');
-    if (!token) {
+    const aprobado = localStorage.getItem('aprobado');
+    if (!token || aprobado === 'false') {
       return false;
     } else {
       return true;

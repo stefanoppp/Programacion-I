@@ -13,6 +13,9 @@ export class ViewUsersComponent implements OnInit {
 
   arrayUsuarios: any[] = []; //guardo los datos del array original y el del buscador
 
+  id!: number;
+  aprobado!:boolean
+
   nombre: string = '';
   email: string = '';
   contrasena: string = '';
@@ -41,7 +44,7 @@ export class ViewUsersComponent implements OnInit {
 
     this.postUsuario.getUsuarios().subscribe((data: any) => {
       console.log('JSON data:', data.usuarios);
-      this.arrayUsuarios = data.usuarios
+      this.arrayUsuarios = data.usuarios;
     })
 
   }
@@ -81,16 +84,12 @@ export class ViewUsersComponent implements OnInit {
       this.contrasenaErrorMsg = 'Ingrese una contraseña segura (8 caracteres, al menos una mayúscula, un numero y un caracter especial).';
       return;
     }
-
-
-
     this.usuarioService.crearUsuario(this.nombre, this.email, this.contrasena).subscribe((res: any) => {
       // Agregar el usuario recién creado al array de usuarios
       this.arrayUsuarios.push(res.usuario);
       this.nombre = '';
       this.email = '';
       this.contrasena = '';
-
       // Mostramos alerta de SweetAlert indicando que se ha creado el usuario correctamente
       Swal.fire({
         title: 'Usuario creado',
@@ -144,4 +143,16 @@ export class ViewUsersComponent implements OnInit {
     this.contrasena = '';
     this.resetErrors();
   }
+ updateEstadoAprobado(id:number){
+  this.aprobado = this.aprobado ? false : true; //condición ? valorSiCierto : valorSiFalso
+  console.log("El id del usuario seleccionado es: ", id);
+  this.usuarioService.updateEstadoAprobado(id,this.aprobado).subscribe(
+    (data: any) => {
+      console.log(data); // muestra la respuesta del servidor si es necesario
+    },
+    (error: any) => {
+      console.log(error); // muestra el error si ocurre alguno
+    }
+  ); 
+ }
 }

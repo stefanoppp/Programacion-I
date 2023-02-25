@@ -47,6 +47,8 @@ export class CardsComponent implements OnInit {
   
   get token() {
     return localStorage.getItem("token") || undefined
-
+  }
+  get aprobado(){
+    return localStorage.getItem("aprobado") ==='true'?true:false || undefined
   }
 }
