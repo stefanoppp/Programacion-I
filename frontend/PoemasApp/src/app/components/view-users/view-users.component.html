@@ -1,11 +1,19 @@
 <div class="container tabla-admin">
     <div class="navbar navbar-expand-sm navbar-dark navbar-position navbar-size p-4">
         <a href="#" class="link-primary text-decoration-none d-flex letra-tamano" data-bs-toggle="modal"
-            data-bs-target="#modalNuevoPoeta"><span class="material-symbols-rounded agregar-tamano"
-                disabled>note_add</span>Nuevo poeta</a>
-        <form class="form-inline form-content" (ngSubmit)="buscarUsuarios(termino.value)" action="/action_page.php">
-            <input class="form-control mr-sm-2 input-size" type="text" placeholder="Search" #termino>
-            <button class="btn-size" type="submit">Buscar</button>
+            data-bs-target="#modalNuevoPoeta"><span class="material-symbols-rounded agregar-tamano" disabled>note_add</span></a>
+        <form class="form-inline form-content" (ngSubmit)="buscarUsuarios()"  #form="ngForm" >
+            <input class="form-control mr-sm-2 input-size" type="text" name="nombre" [(ngModel)]="nombre" placeholder="Buscar por nombre">
+            <select class="form-control separacion-campos" name="order_by" [(ngModel)]="orderBy">
+                <option value="">Ordenar por...</option>
+                <option value="nombre[asc]">Nombre (A-Z)</option>
+                <option value="nombre[desc]">Nombre (Z-A)</option>
+                <option value="poemas_cant[asc]">Menor cantidad de poemas</option>
+                <option value="poemas_cant[desc]">Mayor cantidad de poemas</option>
+            </select>
+            <div class="col-md-3 mb-3">
+                <button type="submit" class="btn btn-navegador btn-primary btn-block">Buscar</button>
+            </div>
         </form>
     </div>
     <table class="table align-middle table-md tabla-admin-align table-striped table-bordered">

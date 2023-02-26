@@ -84,7 +84,7 @@ class Usuarios(Resource):
                     usuarios = usuarios.order_by(UsuarioModel.nombre.desc())
                 if order_by == "nombre[asc]": #ordena nombres de la a-z
                     usuarios = usuarios.order_by(UsuarioModel.nombre)
-                if order_by == "poemas_cant":
+                if order_by == "poemas_cant[asc]":
                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id))
                 if order_by == "poemas_cant[desc]":
                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id).desc())

@@ -14,6 +14,7 @@ export class ViewUsersComponent implements OnInit {
 
   arrayUsuarios: any[] = []; //guardo los datos del array original y el del buscador
   titulo: string = '';
+  orderBy: string = '';
   paginado: Paginado = new Paginado();
 
   id!: number;
@@ -73,10 +74,13 @@ export class ViewUsersComponent implements OnInit {
       });
     }
   }
-  buscarUsuarios(termino: string) {
-    this.usuarioService.buscarUsuarios(termino).subscribe((data: any) => {
-      console.log(data);
-      this.arrayUsuarios = data.usuarios // Asignamos los usuarios recibidos desde el servicio a la propiedad 'usuarios'
+  buscarUsuarios() {
+    this.paginado.order_by = this.orderBy;
+    this.usuarioService.buscarUsuarios(this.nombre, this.paginado).subscribe((data: any) => {
+      console.log('JSON data:', data.usuarios);
+      this.paginado.total = data.total;
+      this.paginado.pages = data.paginas;
+      this.arrayUsuarios = data.usuarios;
     });
   }
   crearUsuario(miFormulario: NgForm) {

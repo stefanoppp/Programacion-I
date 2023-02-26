@@ -67,8 +67,17 @@ export class UsuarioService {
   }
 
   //buscar usuario con el buscador(key=nombre)
-  buscarUsuarios(termino: string): Observable<any> {
-    return this.httpClient.get(`${this.url}?nombre=${termino}`);
+  buscarUsuarios(nombre: string, paginado:Paginado): Observable<any> {
+    let params = new HttpParams();
+    if(paginado.page)
+      params = params.append('page', paginado.page);
+    if(paginado.per_page)
+      params = params.append('per_page', paginado.per_page);
+    if(paginado.order_by)
+      params = params.append('order_by', paginado.order_by);
+    if(nombre)
+      params = params.append('nombre', nombre);
+    return this.httpClient.get(`${this.url}`, { params: params });
   }
   //crear usuario
   crearUsuario(nombre: string, email: string, contrasena: string): Observable<any> {
