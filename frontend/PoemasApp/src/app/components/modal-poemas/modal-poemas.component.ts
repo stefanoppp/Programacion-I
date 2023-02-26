@@ -13,6 +13,9 @@ export class ModalPoemasComponent implements OnInit {
   @Input()
   poemaId: number | undefined;
 
+  estrellasSeleccionadas: number = 0;
+
+
   comentario: string | undefined;
   valoracion: number | undefined;
 
@@ -86,10 +89,26 @@ export class ModalPoemasComponent implements OnInit {
       console.error("Falta algun parametro");
     }
   }
+  cambiarColorEstrellas() {
+    const estrellas = document.querySelectorAll('.fa-star');
+    estrellas.forEach((estrella, index) => {
+      if (index < this.estrellasSeleccionadas) {
+        estrella.classList.add('yellow-star');
+        estrella.classList.remove('black-star');
+      } else {
+        estrella.classList.add('black-star');
+        estrella.classList.remove('yellow-star');
+      }
+    });
+  }
+
 
   calificar(valoracion: number): void {
     this.valoracion = valoracion;
+    this.estrellasSeleccionadas = valoracion;
+    this.cambiarColorEstrellas();
   }
+
   resetErrors() {
     this.comentarioError = false;
   
