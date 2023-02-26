@@ -28,7 +28,8 @@
                 <td>{{usu.poemas_cant}}</td>
                 <td>{{usu.calificaciones_cant}}</td>
                 <td>
-                    <button class="my-button" (click)="updateEstadoAprobado(usu.id)">{{usu.aprobado}}</button>
+                    <button class="my-button" id="aprobado-btn-{{usu.id}}" (click)="updateEstadoAprobado(usu.id)">{{usu.aprobado}}</button>
+
                 </td>
                 <!--en el boton de edit, redirige a un usuario en particular-->
                 <td><a><span class="material-symbols-outlined cursor" routerLink="/user/{{usu.id}}">edit</span></a><a href="#" class="separacion"><span class="material-symbols-outlined cursor" (click)="deleteUsuario(usu.id)">delete</span></a></td>

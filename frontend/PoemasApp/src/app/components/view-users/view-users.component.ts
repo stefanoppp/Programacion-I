@@ -144,7 +144,23 @@ export class ViewUsersComponent implements OnInit {
     this.resetErrors();
   }
  updateEstadoAprobado(id:number){
-  this.aprobado = this.aprobado ? false : true; //condición ? valorSiCierto : valorSiFalso
+  this.aprobado=!this.aprobado
+
+  const btn = document.getElementById(`aprobado-btn-${id}`);
+
+  // verifica si btn no es null antes de agregar o eliminar una clase CSS
+  if (btn) {
+    if (this.aprobado) {
+      btn.classList.add('true');
+      btn.classList.remove('false');
+    } else {
+      btn.classList.add('false');
+      btn.classList.remove('true');
+    }
+
+    btn.textContent = this.aprobado.toString(); // actualiza el texto del botón
+  }
+
   console.log("El id del usuario seleccionado es: ", id);
   this.usuarioService.updateEstadoAprobado(id,this.aprobado).subscribe(
     (data: any) => {
