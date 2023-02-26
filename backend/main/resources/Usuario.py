@@ -88,6 +88,10 @@ class Usuarios(Resource):
                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id))
                 if order_by == "poemas_cant[desc]":
                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id).desc())
+                if order_by == "calificaciones_cant[asc]":
+                    usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.id).order_by(func.count(CalificacionModel.id))
+                if order_by == "calificaciones_cant[desc]":
+                    usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.id).order_by(func.count(CalificacionModel.id).desc())
         usuarios = usuarios.paginate(page,per_page,True,10)
         return jsonify({ 
             'usuarios': [usuario.to_json() for usuario in usuarios.items],
