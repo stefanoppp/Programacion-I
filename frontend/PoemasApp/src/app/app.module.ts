@@ -13,7 +13,6 @@ import { PoemasComponent } from './pages/poemas/poemas.component';
 import { ModalComponent } from './components/modal-user/modal-user.component';
 import { PageNavigHomeComponent } from './components/page-navig-home/page-navig-home.component';
 import { ModalPoemasComponent } from './components/modal-poemas/modal-poemas.component';
-import { PageNavigAdminComponent } from './components/page-navig-admin/page-navig-admin.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { HeaderNoSearchComponent } from './components/header-no-search/header-no-search.component';
@@ -38,7 +37,6 @@ import { RegistroComponent } from './pages/registro/registro.component';
     ModalComponent,
     PageNavigHomeComponent,
     ModalPoemasComponent,
-    PageNavigAdminComponent,
     HeaderComponent,
     ViewUsersComponent,
     HeaderNoSearchComponent,
