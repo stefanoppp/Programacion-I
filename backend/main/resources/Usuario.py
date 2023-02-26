@@ -61,8 +61,8 @@ class Usuarios(Resource):
     def get(self):
         page= request.args.get('page',default=1,type=int)
         per_page= request.args.get('per_page',default=10,type=int)
-        usuarios = db.session.query(UsuarioModel)
         nombre = request.args.get('nombre') #tomo el nombre por parametro y no por el cuerpo
+        usuarios = db.session.query(UsuarioModel)
         if nombre is not None:
             usuarios = usuarios.filter(UsuarioModel.nombre.like("%"+nombre+"%"))
         if request.get_json():
