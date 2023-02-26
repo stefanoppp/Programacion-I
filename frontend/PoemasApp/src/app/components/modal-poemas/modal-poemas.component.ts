@@ -24,6 +24,8 @@ export class ModalPoemasComponent implements OnInit {
   comentarioErrorMsg = '';
   
   comentarioError = false;
+
+  enviandoComentario = false; //spiner
  
 
   constructor(
@@ -37,8 +39,6 @@ export class ModalPoemasComponent implements OnInit {
 
   enviarCalificacion(miFormulario:NgForm) {
     const usuarioId = parseInt(localStorage.getItem('usuarioId') || '0', 10); // id del usuario logeado
-
-
     if (!miFormulario.value.comentario|| !this.comentarioRegex.test(miFormulario.value.comentario)) {
       this.comentarioError = true;
       this.comentarioErrorMsg = 'Tu comentario debe tener un minimo de 30 caracteres.';
@@ -46,6 +46,7 @@ export class ModalPoemasComponent implements OnInit {
     }
 
     if(this.poemaId && this.comentario && this.valoracion && usuarioId) {
+      this.enviandoComentario = true;//activamos el spin de carga
       this.calificacionService.enviarCalificacion(usuarioId, this.poemaId, this.valoracion, this.comentario)
       .subscribe(
         respuesta => {
@@ -61,6 +62,7 @@ export class ModalPoemasComponent implements OnInit {
           });
           console.log('Calificación creada exitosamente');
           // Agrega aquí cualquier código que quieras ejecutar después de crear la calificación exitosamente
+          this.enviandoComentario = false;//desactivamos el spin de carga
         },
         error => {
           if (error.status == 409){
@@ -71,12 +73,14 @@ export class ModalPoemasComponent implements OnInit {
           });
           console.error('Error al crear la calificación:', error);
           // Agrega aquí cualquier código que quieras ejecutar en caso de error
+          this.enviandoComentario = false;//desactivamos el spin de carga
         }if(error.status == 400){
           Swal.fire({
             title: 'Error al calificar',
             text: 'No puede calificar su propio poema.',
             icon: 'error'
           });
+          this.enviandoComentario = false;//desactivamos el spin de carga
         }
         }
       );
@@ -87,6 +91,7 @@ export class ModalPoemasComponent implements OnInit {
         icon: 'warning'
       });
       console.error("Falta algun parametro");
+      this.enviandoComentario = false;//desactivamos el spin de carga
     }
   }
   cambiarColorEstrellas() {

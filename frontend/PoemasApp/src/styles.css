@@ -1,4 +1,4 @@
-
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @font-face {
     font-family: Portoluce;
     src: url(/assets/fonts/Portoluce\ Regular.ttf);

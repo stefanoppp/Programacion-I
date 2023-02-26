@@ -1,4 +1,4 @@
-
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 input::placeholder{
     color: rgb(143, 124, 160) !important;
 
@@ -15,4 +15,11 @@ input::placeholder{
 .yellow-star {
     color: yellow;
 }
+.mat-progress-spinner {
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    
+}
+
   
