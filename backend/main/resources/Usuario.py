@@ -61,6 +61,7 @@ class Usuarios(Resource):
     def get(self):
         page= request.args.get('page',default=1,type=int)
         per_page= request.args.get('per_page',default=10,type=int)
+        order_by= request.args.get('order_by',type=str)
         nombre = request.args.get('nombre') #tomo el nombre por parametro y no por el cuerpo
         usuarios = db.session.query(UsuarioModel)
         if nombre is not None:
@@ -78,15 +79,15 @@ class Usuarios(Resource):
                     usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).having(func.count(PoemaModel.id) > value)
                 if key == "calificaciones_cant":
                     usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.id).having(func.count(CalificacionModel.id) > value)
-                if key == "order_by":
-                    if value == "nombre[desc]": #ordena los nombres de la z-a
-                        usuarios = usuarios.order_by(UsuarioModel.nombre.desc())
-                    if value == "nombre": #ordena nombres de la a-z
-                        usuarios = usuarios.order_by(UsuarioModel.nombre)
-                    if value == "poemas_cant":
-                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id))
-                    if value == "poemas_cant[desc]":
-                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id).desc())
+        if  order_by:
+                if order_by == "nombre[desc]": #ordena los nombres de la z-a
+                    usuarios = usuarios.order_by(UsuarioModel.nombre.desc())
+                if order_by == "nombre[asc]": #ordena nombres de la a-z
+                    usuarios = usuarios.order_by(UsuarioModel.nombre)
+                if order_by == "poemas_cant":
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id))
+                if order_by == "poemas_cant[desc]":
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.id).order_by(func.count(PoemaModel.id).desc())
         usuarios = usuarios.paginate(page,per_page,True,10)
         return jsonify({ 
             'usuarios': [usuario.to_json() for usuario in usuarios.items],
