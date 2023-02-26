@@ -3,6 +3,7 @@ import { UsuarioService } from './../../service/usuario.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { Paginado } from 'src/app/models/paginado.model';
 
 @Component({
   selector: 'app-view-users',
@@ -12,6 +13,8 @@ import { NgForm } from '@angular/forms';
 export class ViewUsersComponent implements OnInit {
 
   arrayUsuarios: any[] = []; //guardo los datos del array original y el del buscador
+  titulo: string = '';
+  paginado: Paginado = new Paginado();
 
   id!: number;
   aprobado!:boolean
@@ -41,12 +44,25 @@ export class ViewUsersComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.paginado.per_page = 10;
+    this.getUsuarios(this.paginado);   
     this.postUsuario.getUsuarios().subscribe((data: any) => {
       console.log('JSON data:', data.usuarios);
       this.arrayUsuarios = data.usuarios;
     })
 
+  }
+  changePagina(page: number) {
+    this.paginado.page = page;
+    this.getUsuarios(this.paginado);
+  }
+  private getUsuarios(paginado: Paginado) {
+    this.usuarioService.getUsuariosPaginado(paginado).subscribe((data: any) => {
+      console.log('JSON data:', data);
+      this.paginado.total = data.total;
+      this.paginado.pages = data.paginas;
+      this.arrayUsuarios = data.usuarios
+    })
   }
   deleteUsuario(id: number) {
     if (confirm("¿Está seguro que desea eliminar este usuario?")) {

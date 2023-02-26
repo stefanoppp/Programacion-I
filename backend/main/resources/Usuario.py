@@ -59,8 +59,8 @@ class Usuarios(Resource):
     #Obtener lista de recursos                #primero los filtros y luego ordenamiento
     @jwt_required(optional=True)
     def get(self):
-        page=1
-        per_page=10
+        page= request.args.get('page',default=1,type=int)
+        per_page= request.args.get('per_page',default=10,type=int)
         usuarios = db.session.query(UsuarioModel)
         nombre = request.args.get('nombre') #tomo el nombre por parametro y no por el cuerpo
         if nombre is not None:
