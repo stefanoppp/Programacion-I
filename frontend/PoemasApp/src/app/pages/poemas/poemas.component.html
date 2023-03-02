@@ -12,6 +12,67 @@
             <small class="text-muted "> el día {{poema.fecha?.substr(0,10)}} a las {{poema.fecha?.substr(11,5)}} hr</small>
         </div>
     </div>
+
+    <div class="resenas card card-poema" >
+        <h2 style="padding: 5px">
+            Comentarios
+        </h2>
+        <hr>
+        <div class="contenedor-resenas">
+        <ul>
+            <li>
+              <h3 style="font-weight: bolder; padding:5px">Nombre del autor</h3>
+              <p style="padding:5px">Este es el comentario del autor</p>
+              <div class="rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+              </div>
+            </li>
+            
+            <li>
+                <h3 style="font-weight: bolder; padding:5px">Nombre del autor</h3>
+                <p>Este es el comentario del autor</p>
+                <div class="rating">
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                </div>
+              </li>
+
+              <li>
+              <h3 style="font-weight: bolder; padding:5px">Nombre del autor</h3>
+              <p style="padding:5px">Este es el comentario del autor</p>
+              <div class="rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+              </div>
+            </li>
+
+            <li>
+                <h3 style="font-weight: bolder; padding:5px">Nombre del autor</h3>
+                <p>Este es el comentario del autor</p>
+                <div class="rating">
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                </div>
+            </li>
+            <!-- Agrega más elementos <li> para mostrar más comentarios -->
+        </ul>
+        </div>  
+    </div>
+    
+    
     <!-------- formulario-------------->
 
     <app-modal-poemas [poemaId]="poema?.id"></app-modal-poemas>

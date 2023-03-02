@@ -102,3 +102,46 @@ input::placeholder{
         font-weight:lighter;
     }
 }
+
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  
+  .rating {
+    font-size: 1.5rem;
+    color: #f2b01e;
+    margin-top: 5px;
+  }
+  
+  .star {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+.resenas{
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+.contenedor-resenas{
+    max-height: 300px;
+    overflow-y: auto;
+}
