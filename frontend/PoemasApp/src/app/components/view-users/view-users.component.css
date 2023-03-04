@@ -84,15 +84,24 @@ body {
 
 .cursor {
     cursor: pointer;
+    color: blue;
+    transition: color 0.2s ease-in-out;
 }
-
+.cursor:hover{
+    color: black;
+}
 .separacion {
     margin-left: 15px;
 }
 
 .agregar-tamano {
     font-size: 45px;
+    color: blue;
+    transition: color 0.2s ease-in-out;
 }
+.agregar-tamano:hover {
+    color: green;
+  }
 
 .letra-tamano {
     font-size: 15px;

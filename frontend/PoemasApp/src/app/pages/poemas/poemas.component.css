@@ -101,7 +101,7 @@ li {
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 20px;
     margin: 0;
     margin-bottom: 5px;
 }
@@ -132,61 +132,88 @@ hr {
     width: 100%;
     background-color: hsla(0, 1%, 61%, 0.76);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  .resenas {
+}
+
+.resenas {
     font-family: Arial, sans-serif;
-  }
-  
-  .contenedor-resenas {
+}
+
+.contenedor-resenas {
     margin-top: 10px;
-  }
-  
-  .valoracion {
+    font-family: Portoluce;
+}
+
+.valoracion {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 2%;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
     background-color: #f0f0f0;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .usuario {
+}
+
+.usuario {
     flex: 1;
-  }
-  
-  .usuario h3 {
+    margin-top: 2%;
+}
+
+.usuario h3 {
     margin: 0;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .usuario p {
-    margin: 5px 0 0;
-    font-size: 14px;
-  }
-  
-  .calificacion {
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.usuario p {
+    margin: 10px 0 0;
+    font-size: 15px;
+    color: #7e7b7b;
+}
+
+.calificacion {
     display: flex;
     align-items: self-end;
-    gap:10px;
-  }
-  
-  .calificacion .estrellas {
+    gap: 10px;
+    margin-right: 5%;
+}
+
+.calificacion .estrellas {
     margin-right: 5px;
     font-size: 20px;
     color: gold;
-  }
-  
-  .calificacion .numero {
+}
+
+.calificacion .numero {
     font-size: 18px;
     font-weight: bold;
     color: #555;
-  }
-  
-  
-  
+}
+
+.fas.fa-trash-alt {
+    color: grey;
+    transition: color 0.2s ease-in-out;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 5%;
+    font-size: 20px;
+    margin-top: 2%;
+
+}
+
+.fas.fa-trash-alt:hover {
+    color: red;
+}
+h2{
+    font-family: Portoluce;
+    color: #979494;
+    margin-bottom: -20px;
+    text-align: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 21px;
+}
+
 @media(max-width:767px) {
     .navbar_pad {
         position: relative;
@@ -210,6 +237,14 @@ hr {
     .card-text {
         font-size: 20px;
         font-weight: lighter;
+    }
+    h2{
+        font-family: Portoluce;
+        color: #979494;
+        margin-bottom: -10px;
+        text-align: center;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        font-size: 17px;
     }
 
 }

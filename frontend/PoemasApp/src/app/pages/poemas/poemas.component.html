@@ -13,14 +13,13 @@
         <small class="text-muted "> el día {{poema.fecha?.substr(0,10)}} a las {{poema.fecha?.substr(11,5)}} hr</small>
     </div>
 </div>
-<div class="resenas card card-poema" style="max-height: 400px; overflow: auto;">
-    <h2 style="padding: 5px; text-align: center;">Comentarios</h2>
+<div class="resenas card card-poema" *ngIf="calificacion.length > 0" style="max-height: 400px; overflow: auto;">
+    <h2 >Comentarios</h2>
     <div class="contenedor-resenas" *ngFor="let i of calificacion">
-        <i *ngIf="isAdmin && isToken" class="fas fa-trash-alt" style="color: red;" (click)="eliminarCalificacion(i[3])"></i>
-        <hr>
         <div class="valoracion">
+            <i *ngIf="isAdmin && isToken" class="fas fa-trash-alt" (click)="eliminarCalificacion(i[3])"></i>
             <div class="usuario">
-                <h3>{{i[1]}}</h3>
+                <h3>{{i[1]}} <span style="color:#7e7b7b">escribio:</span></h3>
                 <p>{{i[0]}}</p>
             </div>
             <div class="calificacion">
