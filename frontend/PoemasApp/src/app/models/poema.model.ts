@@ -5,5 +5,5 @@ export class Poema {
     fecha?: string;
     usuarioId?: number;
     usuario?: any;
-    calificaciones?:[];
+    calificacion?:[];
 }

@@ -1,35 +1,40 @@
-.card-body{
-    width:100%;
+.card-body {
+    width: 100%;
     text-align: center;
     box-shadow: 10px 0px 10px rgba(117, 117, 117, 0.788);
     display: flex;
     flex-direction: column;
     gap: 150px;
 }
-.card-poema{
+
+.card-poema {
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 50px;
     min-width: 250px;
 }
-.estrellas{
+
+.estrellas {
     margin-top: 115px;
 }
-textarea{
+
+textarea {
     resize: none;
     width: 100%;
     height: 100px;
     color: rgb(143, 124, 160);
 }
 
-.card-title{
+.card-title {
     font-size: 30px;
     font-weight: bolder;
 }
-.card-text{
+
+.card-text {
     font-size: 30px;
-    font-weight:lighter;
+    font-weight: lighter;
 }
+
 .card-form {
     min-width: 300px;
     margin-left: auto;
@@ -38,24 +43,27 @@ textarea{
     width: 40%;
     box-shadow: 10px 10px 10px 10px rgba(117, 117, 117, 0.788);
 }
-.card-footer-poemas{
+
+.card-footer-poemas {
     box-shadow: 10px 10px 10px 2px rgba(117, 117, 117, 0.788);
 }
 
-input::placeholder{
+input::placeholder {
     color: rgb(143, 124, 160) !important;
 
 }
-.btn-poemas{
+
+.btn-poemas {
     font-size: 15px;
     font-weight: bold;
     width: 50%;
     margin-left: 25%;
 }
 
-.modal-body-poema{
+.modal-body-poema {
     height: 200px;
 }
+
 .navbar {
     padding-inline-start: 200px;
     padding-inline-end: 200px;
@@ -65,6 +73,7 @@ input::placeholder{
 .logo {
     width: 35px;
 }
+
 .search-input {
     min-width: 95px;
 }
@@ -72,6 +81,7 @@ input::placeholder{
 .nav-min {
     min-width: 240px;
 }
+
 .shadow-nav {
     box-shadow: 0px 1px 8px 3px #000000;
 }
@@ -79,6 +89,104 @@ input::placeholder{
 .navbar_pad {
     padding-top: 22px;
 }
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.rating {
+    font-size: 1.5rem;
+    color: #f2b01e;
+    margin-top: 5px;
+}
+
+.star {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.resenas {
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+hr {
+    width: 100%;
+    background-color: hsla(0, 1%, 61%, 0.76);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .resenas {
+    font-family: Arial, sans-serif;
+  }
+  
+  .contenedor-resenas {
+    margin-top: 10px;
+  }
+  
+  .valoracion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .usuario {
+    flex: 1;
+  }
+  
+  .usuario h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .usuario p {
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+  
+  .calificacion {
+    display: flex;
+    align-items: self-end;
+    gap:10px;
+  }
+  
+  .calificacion .estrellas {
+    margin-right: 5px;
+    font-size: 20px;
+    color: gold;
+  }
+  
+  .calificacion .numero {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  
+  
 @media(max-width:767px) {
     .navbar_pad {
         position: relative;
@@ -93,12 +201,15 @@ input::placeholder{
     .shadow-nav {
         padding: 10px 10px 10px;
     }
-    .card-title{
+
+    .card-title {
         font-size: 20px;
         font-weight: bolder;
     }
-    .card-text{
+
+    .card-text {
         font-size: 20px;
-        font-weight:lighter;
+        font-weight: lighter;
     }
+
 }

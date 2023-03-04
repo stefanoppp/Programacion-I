@@ -1,23 +1,37 @@
-    <app-header></app-header>
+<app-header></app-header>
 
-    <!-------- codigo principal-------------->
-    <div class="card card-poema" *ngIf="poema">
-        <div class="card-body">
-            <h5 class="card-title">{{poema.titulo}}</h5>
-            <p class="card-text p-3">{{poema.contenido}}</p>
-            <button type="button" id="confirmar" class="btn btn-primary btn-poemas" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enviar Reseña</button>
-        </div>
-        <div class="card-footer card-footer-poemas">
-            <small class="text-muted">Creado por <span style="font-weight:bolder">{{poema.usuario?.nombre}}</span></small>
-            <small class="text-muted "> el día {{poema.fecha?.substr(0,10)}} a las {{poema.fecha?.substr(11,5)}} hr</small>
+<!-------- codigo principal-------------->
+<div class="card card-poema" *ngIf="poema">
+    <div class="card-body">
+        <h5 class="card-title">{{poema.titulo}}</h5>
+        <p class="card-text p-3">{{poema.contenido}}</p>
+        <button type="button" id="confirmar" class="btn btn-primary btn-poemas" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">Enviar Reseña</button>
+    </div>
+    <div class="card-footer card-footer-poemas">
+        <small class="text-muted">Creado por <span style="font-weight:bolder">{{poema.usuario?.nombre}}</span></small>
+        <small class="text-muted "> el día {{poema.fecha?.substr(0,10)}} a las {{poema.fecha?.substr(11,5)}} hr</small>
+    </div>
+</div>
+<div class="resenas card card-poema" style="max-height: 400px; overflow: auto;">
+    <h2 style="padding: 5px; text-align: center;">Comentarios</h2>
+    <div class="contenedor-resenas" *ngFor="let i of calificacion">
+        <i *ngIf="isAdmin && isToken" class="fas fa-trash-alt" style="color: red;" (click)="eliminarCalificacion(i[3])"></i>
+        <hr>
+        <div class="valoracion">
+            <div class="usuario">
+                <h3>{{i[1]}}</h3>
+                <p>{{i[0]}}</p>
+            </div>
+            <div class="calificacion">
+                <span class="estrellas" [innerHTML]="getStars(i[2])"></span>
+                <span class="numero">{{i[2]}}</span>
+            </div>
         </div>
     </div>
-    <!-------- formulario-------------->
+</div>
 
-    <app-modal-poemas [poemaId]="poema?.id"></app-modal-poemas>
-    
-    <!-------footer--------------->
-    <app-footer></app-footer>
-   
-  
+<app-modal-poemas [poemaId]="poema?.id"></app-modal-poemas>
 
+<!-------footer--------------->
+<app-footer></app-footer>

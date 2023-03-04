@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CalificacionService {
-  urlCalificacion= 'api/calificaciones'
+  urlCalificacion= 'api/calificaciones';
+  urlCalificacion2= 'api/calificacion/';
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -20,6 +21,15 @@ export class CalificacionService {
     const body = { usuarioId, poemaId, valoracion, comentario };
     const requestOptions = { headers: headers };
     return this.httpClient.post(this.urlCalificacion, body, requestOptions);
+  }
+  eliminarCalificacion(id: number) {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.httpClient.delete(`${this.urlCalificacion2}${id}`, requestOptions);
   }
 }
 

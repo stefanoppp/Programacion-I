@@ -29,6 +29,8 @@ class Calificacion(db.Model):
             'id': self.id,
             'valoracion': str(self.valoracion),
             'comentario': str(self.comentario),
+            'usuario': self.usuario.to_json(),
+            
         }
         return calificacion_json
     
